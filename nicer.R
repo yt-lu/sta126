@@ -7,7 +7,7 @@ donut <- function (x, labels = names(x), main = NULL, radius = 0.3, col = 2:10, 
   R <- 1                                    # Outer radius
   r <- 1 - radius                           # Inner radius
   size <- 1.4
-  plot(R * cos(u), R * sin(u), type = 'l', axes = FALSE, 
+  plot(R * cos(u), R * sin(u), type = 'l', axes = FALSE, main = main,
        xlab = NA, ylab = NA, xlim = c(-size, size), ylim = c(-size, size))
   lines(r * cos(u), r * sin(u))
   for (i in 1:length(x)) {
