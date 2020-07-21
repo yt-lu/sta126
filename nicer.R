@@ -1,6 +1,6 @@
 
 # Donut plot
-donut <- function (x, labels = names(x), main = NULL, radius = 0.3, col = 2:10, ...)
+donut <- function (x, labels = names(x), main = NULL, radius = 0.3, col = rainbow(10), ...)
 {par(pty = "s", oma = c(0, 0, 0, 0))
   p <- c(0, cumsum(x / sum(x))) * 2 * pi # Partitions in radians
   u <- seq(0, 2 * pi, length.out = 200)  # Angle parameter u
