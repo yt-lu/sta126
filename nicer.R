@@ -17,3 +17,9 @@ donut <- function (x, labels = names(x), main = NULL, radius = 0.3, col = rainbo
          srt = min(t[101] * 180 / pi - 90, abs(270 - t[101] * 180 / pi)))
   }
 }
+
+# Frequency Polygon
+freqpoly <- function (x, breaks, pch = 1, col = 'black', xlab = NULL, ylab = NULL, main = NULL,...){
+  h <- hist(x, breaks = breaks, plot = FALSE)
+  plot(h$mids, h$counts, type = 'b', pch = pch, col = col, xlab = xlab, ylab = ylab, main = main)
+}
