@@ -25,12 +25,13 @@ freqpoly <- function (x, breaks, pch = 1, col = 'black', xlab = NULL, ylab = NUL
 }
 
 # Lollipop 
-lollipop <- function (x, cex = 2, lwd = 1, col = 'black', xlab = NULL, ylab = "Frequency", main = NULL,...){
+lollipop <- function (x, cex = 1.5, lwd = 1, dcol = 'black', bcol = 'black',
+                      xlab = NULL, ylab = "Frequency", main = NULL,...){
   a <- as.data.frame(x)
   names(a) <- c("factors", "counts")
   n <- nrow(a)
   plot(1:n, a$counts, pch = 16, cex = cex, xlab = xlab, ylab = ylab, 
-       xaxt = "n", main = main)
-  segments(1:n, rep(0, n), 1:n, a$counts, lwd = 3)
+       xaxt = "n", main = main, col = dcol)
+  segments(1:n, rep(0, n), 1:n, a$counts, lwd = 3, col = bcol)
   axis(1, at = 1:n, labels = a$factors)
 }
