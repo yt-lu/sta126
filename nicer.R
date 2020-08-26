@@ -23,3 +23,14 @@ freqpoly <- function (x, breaks, pch = 1, col = 'black', xlab = NULL, ylab = NUL
   h <- hist(x, breaks = breaks, plot = FALSE)
   plot(h$mids, h$counts, type = 'b', pch = pch, col = col, xlab = xlab, ylab = ylab, main = main)
 }
+
+# Lollipop 
+lollipop <- function (x, cex = 2, lwd = 1, col = 'black', xlab = NULL, ylab = "Frequency", main = NULL,...){
+  a <- as.data.frame(x)
+  names(a) <- c("factors", "counts")
+  n <- nrow(a)
+  plot(1:n, a$counts, pch = 16, cex = cex, xlab = xlab, ylab = ylab, 
+       xaxt = "n", main = main)
+  segments(1:n, rep(0, n), 1:n, a$counts, lwd = 3)
+  axis(1, at = 1:n, labels = a$factors)
+}
