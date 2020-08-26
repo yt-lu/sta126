@@ -33,6 +33,6 @@ lollipop <- function (x, cex = 1.5, lwd = 0.8, dcol = 'black', bcol = 'black',
   n <- nrow(a)
   plot(1:n, a$counts, pch = 16, cex = cex, xlab = xlab, ylab = ylab, 
        xaxt = "n", main = main, col = dcol, xlim = xlim, ylim = ylim)
-  segments(1:n, rep(0, n), 1:n, a$counts, lwd = 3, col = bcol)
+  segments(1:n, rep(0, n), 1:n, a$counts, lwd = lwd, col = bcol)
   axis(1, at = 1:n, labels = a$factors)
 }
