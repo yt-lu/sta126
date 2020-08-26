@@ -25,7 +25,7 @@ freqpoly <- function (x, breaks, pch = 1, col = 'black', xlab = NULL, ylab = NUL
 }
 
 # Lollipop 
-lollipop <- function (x, cex = 1.5, lwd = 1, dcol = 'black', bcol = 'black',
+lollipop <- function (x, cex = 1.5, lwd = 0.8, dcol = 'black', bcol = 'black',
                       xlab = NULL, ylab = "Frequency", main = NULL,...){
   a <- as.data.frame(x)
   names(a) <- c("factors", "counts")
