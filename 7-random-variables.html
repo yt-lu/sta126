@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-09-21" />
+<meta name="date" content="2020-09-23" />
 
 <title>Discrete Random Variables</title>
 
@@ -1636,7 +1636,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Discrete Random Variables</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">09/21/2020</h4>
+<h4 class="date">09/23/2020</h4>
 
 </div>
 
@@ -1922,6 +1922,111 @@ div.tocify {
 <p><br></p>
 <p><strong><ex>Book Example 5.4</ex></strong> A saleswoman has scheduled two appointments to sell encyclopedias. She feels that her first appointment will lead to a sale with probability 0.3. She also feels that the second will lead to a sale with probability 0.6 and that the results from the two appointments are independent. What is the probability distribution of <span class="math inline">\(X\)</span>, the number of sales made?</p>
 <p><br><br><br><br></p>
+</div>
+<div id="expected-values" class="section level3">
+<h3>Expected Values</h3>
+<p>The <strong><key>expected value</key></strong> of a discrete random variable <span class="math inline">\(X\)</span> whose possible values are <span class="math inline">\(x_1, x_2, \cdots, x_n\)</span>, is denoted by <span class="math inline">\(E[X]\)</span> and is defined by</p>
+<p><span class="math display">\[E[x] = \sum_{i=1}^n x_i P(x_i),\]</span></p>
+<p>which represents, on average, what value one would expect to occur. It is also called the <strong><key>mean of the random variable</key></strong> or the <strong><key>weighted average</key></strong>.</p>
+<p><strong><ex>Example 5</ex></strong> Let <span class="math inline">\(X\)</span> be the number facing up when we roll a fair dice. Find <span class="math inline">\(E[X]\)</span>.</p>
+<p><br><br></p>
+<p><strong><ex>Example 6</ex></strong> Let <span class="math inline">\(X\)</span> be the number facing up when we roll the customized dice we created in Example 3. Find <span class="math inline">\(E[X]\)</span>.</p>
+<p><br><br></p>
+<p><strong><ex>Example 7</ex></strong> Suppose, in a casino, people bet on a fair dice. They get $1 if the dice lands on a 3. What is the minimum price that the casino should charge each person who plays in this game, so that the casino will not lose money in the long run?</p>
+<p><br><br></p>
+<p><strong><ex>Example 8</ex></strong> In the same casino, people bet on the sum of the two customized dice we created in Example 4. Create the game prizes and find out the minimum price that the casino should charge for each person who plays in the game you created.</p>
+<p><br><br></p>
+<div class="framed">
+<p>Properties of expected values:</p>
+<p><span class="math display">\[E[X+Y+Z] = E[X] + E[Y] + E[Z]\]</span></p>
+</div>
+<p><br></p>
+<p><strong><ex>Book Example 5.9</ex></strong> The following are the annual incomes of 7 men and 7 women who are residents of a certain community (all numbers are in $1000). Suppose that a woman and a man are randomly chosen. Find the expected value of the sum of their incomes.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Men</th>
+<th>Women</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>33.5</td>
+<td>24.2</td>
+</tr>
+<tr class="even">
+<td>25.0</td>
+<td>19.5</td>
+</tr>
+<tr class="odd">
+<td>28.6</td>
+<td>27.4</td>
+</tr>
+<tr class="even">
+<td>41.0</td>
+<td>28.6</td>
+</tr>
+<tr class="odd">
+<td>30.5</td>
+<td>32.2</td>
+</tr>
+<tr class="even">
+<td>29.6</td>
+<td>22.4</td>
+</tr>
+<tr class="odd">
+<td>32.8</td>
+<td>21.6</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<p><strong><ex>Book Example 5.10</ex></strong> The following table lists the number of civilian full-time law enforcement employees in eight cities. Suppose that two of the cities are to be randomly chosen and all the civilian law enforcement employees of these cities are to be interviewed. Find the expected number of people who will be interviewed.</p>
+<table>
+<thead>
+<tr class="header">
+<th>City</th>
+<th>Civilian law enforcement employees</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>105</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>155</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>149</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>195</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>290</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>357</td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td>246</td>
+</tr>
+<tr class="even">
+<td>H</td>
+<td>178</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<p><strong><ex>Book Example 5.11</ex></strong> A building contractor has sent in bids for three jobs. If the contractor obtains these jobs, they will yield respective profits of 20, 25, and 40 (in units of $1000). On the other hand, for each job the contractor does not win, he will incur a loss (due to time and money already spent in making the bid) of 2. If the probabilities that the contractor will get these jobs are, respectively, 0.3, 0.6, and 0.2, what is the expected total profit?</p>
+<p><br><br></p>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
 <h3></h3>
