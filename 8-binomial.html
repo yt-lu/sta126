@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-09-25" />
+<meta name="date" content="2020-09-28" />
 
 <title>Binomial Random Variables</title>
 
@@ -1711,7 +1711,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Binomial Random Variables</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">09/25/2020</h4>
+<h4 class="date">09/28/2020</h4>
 
 </div>
 
@@ -1769,6 +1769,41 @@ div.tocify {
 </ol>
 <p><strong><ex>Example 5</ex></strong> Suppose you are in charge of the booking policy for small commuter planes, capacity 90. Since past studies show that 3% of the booked passengers fail to arrive for the flight, you wonder whether you should overbook the flight. If you did, you could sell more tickets. On the other hand, if you sell more tickets than spaces, and everyone happens to show up, you will have disgruntled customers. What is your decision?</p>
 <p><br><br></p>
+</div>
+<div id="expected-value-and-the-variance" class="section level3">
+<h3>Expected Value and the Variance</h3>
+<p>A <strong><key>Bernoulli</key></strong> random variable takes either the value of 1 or 0. Assume the probability of getting the value of 1 is <span class="math inline">\(p\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(P(B)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td><span class="math inline">\(1 - p\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[E[B] = \qquad \mbox{and} \qquad Var(B) = \]</span></p>
+A <strong><key>binomial</key></strong> random variable <span class="math inline">\(X\)</span> is the sum of <span class="math inline">\(n\)</span> Bernoulli random variables. Because <span class="math display">\[E[A + B] = E[A] + E[B] \quad \mbox{and}\quad Var[A+B] = Var[A] + Var[B],\]</span> We have
+<div class="framed">
+<p><span class="math display">\[E[X] = np \quad \mbox{and}\quad Var(X) =np(1-p).\]</span></p>
+</div>
+<p><br></p>
+<p><strong><ex>Book Example 5.26</ex></strong> Suppose that each screw produced is independently defective with probability 0.01. Find the expected value and variance of the number of defective screws in a shipment of size 1000.</p>
+<p><br><br><br></p>
+<p><strong><ex>Example 6</ex></strong> If <span class="math inline">\(X\)</span> is a binomial random variable with expected value 4.5 and variance 0.45, find</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P\{X=3\}\)</span></li>
+<li><span class="math inline">\(P\{X\ge 4\}\)</span></li>
+</ol>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
 <h3></h3>
