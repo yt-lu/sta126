@@ -1,0 +1,151 @@
+---
+title: "Counting Principles"
+author: "Yuanting Lu"
+date: "`r format(Sys.Date(), format = '%m/%d/%Y')`"
+output: 
+  html_document:
+    theme: united
+    highlight: monochrome
+    css: notes-style.css
+    toc: TRUE
+    number_sections: FALSE
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+```
+
+<hr class="left"> </hr>
+
+### Basic Principle
+
+<div class="framed">
+
+For a sequence of two events in which the first can occur in $n$ ways and the second
+in $m$ ways, the two events can occur a total of $n\times m$ ways.
+
+</div>
+
+<br>
+
+**<ex>Book Example 4.20</ex>** One man and one woman are to be selected from a group consisting of 12
+women and 8 men. How many different choices are possible? 
+
+<br><br>
+
+
+**<ex>Book Example 4.21</ex>** Two people are to be selected from a group that consists of 10 married couples.
+
+   1. How many different choices are possible? 
+   2. If each choice is equally likely, what is the probability that the two people selected are married to
+each other?
+
+<br><br>
+
+
+**<ex>Book Example 4.22</ex>** If four people are in a room, what is the probability that no two of them
+celebrate their birthday on the same day of the year?
+
+<br><br>
+
+**<ex>Example 1.</ex>** If 30 people are in a room, what is the probability that at least two of them were born on the same day of the year?
+
+<br><br><br>
+
+### Combination
+
+
+**<key>Combination</key>**: A collection, <key>regardless of order</key>, in which $r$ objects are chosen from $n$ different objects ($r\le n$) and repetition is not allowed. The total number of possible combinations is denoted by ${_n}C_{r}$, $C(n, r)$, or $n \choose r$.
+
+\[{n\choose r} = \dfrac{n!}{r!(n-r)!}\]
+
+where $n!$ is the **<key>factorial</key>** of $n$ such that $n!=1\times 2\times 3 \times \cdots \times n$.
+
+```{r, eval=FALSE}
+choose(n, r)
+```
+
+**<ex>Book Example 4.23</ex>** 
+
+   (a). How many different groups of size 2 can be selected from the items a,
+b, c?
+
+   (b). How many different groups of size 2 can be chosen from a set of 6
+people?
+
+<br><br><br>
+
+**<ex>Example 2</ex>** If 5 of us are to be randomly selected by the General Education Committee for students learning outcomes assessment, how many possible outcomes are there? 
+
+<br><br><br>
+
+
+### Permutation
+
+**<key>Permutation</key>**: An <key>ordered</key> arrangement in which $r$ objects are chosen from $n$ different objects ($r\le n$) and repetition is not allowed. The total number of possible permutations is denoted by ${_n}P_{r}$, or $P(n, r)$.
+
+\[P(n, r) = \dfrac{n!}{(n-r)!}\]
+
+
+```{r, eval=FALSE}
+factorial(n) / factorial(n - r)
+```
+
+Did you notice the relation between combination and permutation? 
+\[P(n, r) = C(n, r)\cdot r!\] 
+Therefore, we can also calculate permutation $P(n, r)$ by
+
+```{r, eval=FALSE}
+choose(n, r) * factorial(r)
+```
+
+**<ex>Example 3</ex>** The England Premier League (soccer) has 20 teams. Every season, each team has two games (home and away) with every other team. How many games are there in the league every season?
+
+<br><br><br>
+
+
+**<ex>Example 4</ex>** Four students $A, B, C$, and $D$ are scheduled to present in the same paper session on BEAR Day. What is the probability that the order of the speakers is $ADBC$?
+
+<br><br><br>
+
+### Lottery
+
+**<ex>Example 5</ex>** The following information is available on the Illinois Lottery's website. Can you explain the winning chances?
+
+![](images/Lotto.png)
+
+<br><br><br>
+
+**<ex>Example 6</ex>** The following information is available on the Georgia Powerball website. Can you explain the winning chances? (How to play: Choose 5 numbers <span class="dotw"></span> from 1 to 69 and a Powerball number <span class="dotr"></span> from 1 to 26. )
+
+| Match | Prize | Odds |
+| --- | --- | --- |
+| <span class="dotw"></span><span class="dotw"></span><span class="dotw"></span><span class="dotw"></span><span class="dotw"></span> $+$ <span class="dotr"></span> | Jackpot | 1 in $292,201,338$ |
+| <span class="dotw"></span><span class="dotw"></span><span class="dotw"></span><span class="dotw"></span><span class="dotw"></span> | \$$1,000,000$ | 1 in $11,688,054$ |
+| <span class="dotw"></span><span class="dotw"></span><span class="dotw"></span><span class="dotw"></span> $+$ <span class="dotr"></span> | \$$50,000$ |  |
+| <span class="dotw"></span><span class="dotw"></span><span class="dotw"></span><span class="dotw"></span> | \$$100$ |  |
+| <span class="dotw"></span><span class="dotw"></span><span class="dotw"></span> $+$ <span class="dotr"></span> | \$$100$ |  |
+| <span class="dotw"></span><span class="dotw"></span><span class="dotw"></span> | \$$7$ |  |
+| <span class="dotw"></span><span class="dotw"></span> $+$ <span class="dotr"></span> | \$$7$ | |
+| <span class="dotw"></span> $+$ <span class="dotr"></span> | \$$4$ | |
+|  <span class="dotr"></span>| \$$4$ | |
+### {- #endnotes}
+
+<hr class="left"> </hr>
+
+
+<!-- ### Online R Editor -->
+
+<!-- <div class="rdrr">This is for quick demonstration only. Your work in here can **NOT** be saved.</div> -->
+
+<!-- <iframe width='100%' height='2200' src='https://rdrr.io/snippets/embed/?code=' frameborder='0'></iframe> -->
+
+```{js, echo=FALSE, eval=TRUE}
+$(document).ready(function() {
+  $('.footnotes ol').appendTo('#endnotes');
+  $('.footnotes').remove();
+});
+```
