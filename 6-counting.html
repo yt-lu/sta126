@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-09-18" />
+<meta name="date" content="2020-09-29" />
 
 <title>Counting Principles</title>
 
@@ -1711,7 +1711,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Counting Principles</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">09/18/2020</h4>
+<h4 class="date">09/29/2020</h4>
 
 </div>
 
@@ -1755,6 +1755,8 @@ div.tocify {
 <p><strong><key>Permutation</key></strong>: An <key>ordered</key> arrangement in which <span class="math inline">\(r\)</span> objects are chosen from <span class="math inline">\(n\)</span> different objects (<span class="math inline">\(r\le n\)</span>) and repetition is not allowed. The total number of possible permutations is denoted by <span class="math inline">\({_n}P_{r}\)</span>, or <span class="math inline">\(P(n, r)\)</span>.</p>
 <p><span class="math display">\[P(n, r) = \dfrac{n!}{(n-r)!}\]</span></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">factorial</span>(n) <span class="op">/</span><span class="st"> </span><span class="kw">factorial</span>(n <span class="op">-</span><span class="st"> </span>r)</span></code></pre></div>
+<p>Did you notice the relation between combination and permutation? <span class="math display">\[P(n, r) = C(n, r)\cdot r!\]</span> Therefore, we can also calculate permutation <span class="math inline">\(P(n, r)\)</span> by</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">choose</span>(n, r) <span class="op">*</span><span class="st"> </span><span class="kw">factorial</span>(r)</span></code></pre></div>
 <p><strong><ex>Example 3</ex></strong> The England Premier League (soccer) has 20 teams. Every season, each team has two games (home and away) with every other team. How many games are there in the league every season?</p>
 <p><br><br><br></p>
 <p><strong><ex>Example 4</ex></strong> Four students <span class="math inline">\(A, B, C\)</span>, and <span class="math inline">\(D\)</span> are scheduled to present in the same paper session on BEAR Day. What is the probability that the order of the speakers is <span class="math inline">\(ADBC\)</span>?</p>
