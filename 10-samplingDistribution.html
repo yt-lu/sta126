@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-10-07" />
+<meta name="date" content="2020-10-09" />
 
 <title>Sampling Distribution</title>
 
@@ -1723,25 +1723,74 @@ div.tocify {
 
 <h1 class="title toc-ignore">Sampling Distribution</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">10/07/2020</h4>
+<h4 class="date">10/09/2020</h4>
 
 </div>
 
 
 <hr class="left">
 </hr>
+<div id="sampling-distribution" class="section level3">
+<h3>Sampling Distribution</h3>
+<blockquote>
+<p>“One of the key concerns of statistics is the drawing of conclusions from a set of observed data. These data will usually consist of a sample of certain elements of a population, and the objective will be to use the sample to draw conclusions about the entire population.”</p>
+</blockquote>
+<p>In this lecture, we will learn about how to construct distributions of sample statistics (e.g., minimum, maximum, mean, median, proportion, standard deviation).</p>
+<div class="framed">
+<ol style="list-style-type: decimal">
+<li>Determine which parameter we would like to know from the population.</li>
+<li>Draw a random sample of size <span class="math inline">\(n\)</span>.</li>
+<li>Calculate the sample statistic.</li>
+<li>Repeat steps 2 and 3 a large number of times.</li>
+<li>Display all the sample statistic we obtained in step 4 on the same graph.</li>
+</ol>
+</div>
+<p><br></p>
+<p><strong><ex>Example</ex></strong> Suppose in a certain population, the amount of cash people have in their pockets is uniformly distributed between 0 and 100. Find the sampling distribution of sample minimum.</p>
+<ol style="list-style-type: decimal">
+<li>Create the population.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>population &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">20000</span>, <span class="dv">0</span>, <span class="dv">100</span>),<span class="dv">2</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">hist</span>(population)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Draw a sample of size 200.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>x &lt;-<span class="st"> </span>population[<span class="kw">sample</span>(<span class="dv">20000</span>, <span class="dv">200</span>)]</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Calculate the sample minimum.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">min</span>(x)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Report your sample minimum to the app.</li>
+</ol>
+<iframe src="https://shiny.yuanting.lu/sampling?showcase=0" width="100%" height="550px">
+</iframe>
+<ol start="5" style="list-style-type: decimal">
+<li>To display the distribution for 5000 samples.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>m &lt;-<span class="st"> </span><span class="dv">5000</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>allx &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, m)</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  x &lt;-<span class="st"> </span>population[<span class="kw">sample</span>(<span class="dv">20000</span>, <span class="dv">200</span>)]</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  allx[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>}</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">hist</span>(allx)</span></code></pre></div>
+</div>
+<div id="sampling-distribution-of-sample-proportion" class="section level3">
+<h3>Sampling Distribution of Sample Proportion</h3>
 <p>The data file <code>ATL_Departure_Flights_2017.csv</code> has the flights status information (on-time or delayed) of all the domestic departure flights in Atlanta Hartsfield Airport 2017.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>departure &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://albums.yuanting.lu/sta126/ATL_Departure_Flights_2017.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>departure &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://albums.yuanting.lu/sta126/ATL_Departure_Flights_2017.csv&quot;</span>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>How large is the dataset?</p></li>
 <li><p>What percentage of departure flights were on-time?</p></li>
 <li><p>Take a random sample of 200 flights. What percentage of departure flights were on-time in the sample?</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>x &lt;-<span class="st"> </span>departure<span class="op">$</span>Status[<span class="kw">sample</span>(<span class="dv">364655</span>, <span class="dv">200</span>)]</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">table</span>(x) <span class="op">/</span><span class="st"> </span><span class="dv">200</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>x &lt;-<span class="st"> </span>departure<span class="op">$</span>Status[<span class="kw">sample</span>(<span class="dv">364655</span>, <span class="dv">200</span>)]</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">table</span>(x) <span class="op">/</span><span class="st"> </span><span class="dv">200</span></span></code></pre></div></li>
 <li><p>Repeatedly take 5 or more samples and report the percentage of on-time departure flights in each sample in the app below.</p></li>
 </ol>
 <iframe src="https://shiny.yuanting.lu/sampling?showcase=0" width="100%" height="550px">
 </iframe>
+</div>
 <div id="endnotes" class="section level3 unnumbered">
 <h3></h3>
 <hr class="left">
