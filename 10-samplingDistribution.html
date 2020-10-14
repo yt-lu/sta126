@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-10-12" />
+<meta name="date" content="2020-10-14" />
 
 <title>Sampling Distribution</title>
 
@@ -1723,7 +1723,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Sampling Distribution</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">10/12/2020</h4>
+<h4 class="date">10/14/2020</h4>
 
 </div>
 
@@ -1759,10 +1759,13 @@ div.tocify {
 <h3>Central Limit Theorem</h3>
 <div class="framed">
 <p>Central Limit Theorem:</p>
-<p>For a random sample of size <span class="math inline">\(n\)</span> from a population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, the sampling distribution of the sample mean <span class="math inline">\(\bar{x}\)</span> is approximately normal and has a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\dfrac{\sigma}{\sqrt n}\)</span>.</p>
-<p><span class="math display">\[\mu_{\bar{x}}=\mu, \mbox{ and }\sigma_{\bar{x}}=\dfrac{\sigma}{\sqrt n}.\]</span></p>
+<p>For a random sample of size <span class="math inline">\(n\)</span> from a population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, the sampling distribution of the sample mean, <span class="math inline">\(\overline{X}\)</span>, is approximately normal and has a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\dfrac{\sigma}{\sqrt n}\)</span>.</p>
+<p><span class="math display">\[E(\overline{X})=\mu, \mbox{ and }SD(\overline{X})=\dfrac{\sigma}{\sqrt n}.\]</span></p>
 </div>
 <p><br></p>
+<blockquote>
+<p>“… practically speaking, no matter how nonnormal the underlying population distribution is, the sample mean of a sample size of at least 30 will be approximately normal.”</p>
+</blockquote>
 <p><strong><ex>Example 4</ex></strong> Men’s weight is normally distributed with <span class="math inline">\(\mu = 172\)</span> lb and <span class="math inline">\(\sigma = 29\)</span> lb.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>If 1 man is randomly selected, find the probability that his weight is less than 167 lb.</p></li>
@@ -1771,7 +1774,13 @@ div.tocify {
 <li><p>If 64 men are randomly selected, find the probability that their mean weight is between 170 and 175.</p></li>
 <li><p>You are to design an elevator to safely hold 16 people. Find the maximum allowable weight if we want a 0.95 probability that this maximum will not be exceeded in the worst case when 16 randomly selected males are on it.</p></li>
 </ol>
-<p><br><br></p>
+<p><br><br><br></p>
+<p><strong><ex>Book Example 7.2</ex></strong> An insurance company has 10,000 automobile policyholders. If the expected yearly claim per policyholder is $260 with a standard deviation of $800, approximate the probability that the total yearly claim exceeds $2.8 million.</p>
+<p><br><br><br></p>
+<p><strong><ex>Book Example 7.3</ex></strong> The blood cholesterol levels of a population of workers have mean 202 and standard deviation 14. If a sample of 36 workers is selected, approximate the probability that the sample mean of their blood cholesterol levels will lie between 198 and 206.</p>
+<p><br><br><br></p>
+<p><strong><ex>Book Example 7.4</ex></strong> An astronomer is interested in measuring, in units of light-years, the distance from her observatory to a distant star. However, the astronomer knows that due to differing atmospheric conditions and normal errors, each time a measurement is made, it will yield not the exact distance, but an estimate of it. As a result, she is planning on making a series of 10 measurements and using the average of these measurements as her estimated value for the actual distance. If the values of the measurements constitute a sample from a population having mean d (the actual distance) and a standard deviation of 3 light-years, approximate the probability that the astronomer’s estimated value of the distance will be within 0.5 light-years of the actual distance.</p>
+<p><br><br><br></p>
 </div>
 <div id="sampling-distribution-of-sample-proportion" class="section level3">
 <h3>Sampling Distribution of Sample Proportion</h3>
