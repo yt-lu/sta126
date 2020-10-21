@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2020-10-21" />
 
 <title>Confidence Interval for a Population Proportion</title>
 
@@ -1652,7 +1652,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Confidence Interval for a Population Proportion</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">10/19/2020</h4>
+<h4 class="date">10/21/2020</h4>
 
 </div>
 
@@ -1683,10 +1683,27 @@ div.tocify {
 <div class="framed">
 <p>In general, a <span class="math inline">\(100(1-\alpha)\)</span>% confidence interval for a population proportion <span class="math inline">\(p\)</span> is <span class="math display">\[\left(\hat{p} - z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}, \quad\hat{p} + z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}\right).\]</span></p>
 </div>
-<p><strong><ex>Example 1.</ex></strong> Of the 1005 people participated in a survey, 728 people (72.4%) are in favor of candidate A. Based on the survey,</p>
+<p><br></p>
+<p><strong><ex>Example 2.</ex></strong> Of the 1005 people participated in a survey, 728 people (72.4%) are in favor of candidate A. Based on the survey,</p>
 <ol style="list-style-type: lower-alpha">
-<li>Find the 99% confidence interval for the proportion of people who are in favor of candidate A. (a) Find the 90% confidence interval for the proportion of people who are in favor of candidate A.</li>
+<li>Find the 99% confidence interval for the proportion of people who are in favor of candidate A.</li>
+<li>Find the 90% confidence interval for the proportion of people who are in favor of candidate A.</li>
 </ol>
+<p><br><br><br></p>
+<p><strong><ex>Book Example 8.15</ex></strong> Out of a random sample of 100 students at a university, 82 stated that they were nonsmokers. Based on this, construct a 99% confidence interval estimate of the proportion of all the students at the university who are nonsmokers.</p>
+<p><br><br><br></p>
+</div>
+<div id="margin-of-error" class="section level3">
+<h3>Margin of Error</h3>
+<p>The <strong><key>width</key></strong> of a confidence interval is called the <strong><key>margin of error</key></strong>.</p>
+<p><span class="math display">\[MOE = z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}.\]</span></p>
+<p>The largest possible value for <span class="math inline">\(\hat{p}(1-\hat{p})\)</span> is 0.25. Therefore, the following can be used to estimate MOE.</p>
+<p><span class="math display">\[MOE\approx z_{\alpha/2}\sqrt{\dfrac{0.25}{n}}=z_{\alpha/2}\dfrac{0.5}{\sqrt n}.\]</span></p>
+<p>Furthermore, 95% is the most commonly used confidence level. Thus, if confidence level is not provided, by default, we use <span class="math inline">\(z_{\alpha/2}=z_{0.025}=1.96\)</span>.</p>
+<p><strong><ex>Example 3.</ex></strong> How large a sample is needed to ensure that the length of the 90% confidence interval estimate of <span class="math inline">\(p\)</span> is less than 0.01?</p>
+<p><br><br><br></p>
+<p><strong><ex>Book Example 8.16.</ex></strong> On December 24, 1991, The New York Times reported that a poll indicated that 46 percent of the population was in favor of the way that President Bush was handling the economy, with a margin of error of <span class="math inline">\(\pm 3\)</span>% What does this mean? Can we infer how many people were questioned?</p>
+<p><br><br><br></p>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
 <h3></h3>
