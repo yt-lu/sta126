@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-10-24" />
+<meta name="date" content="2020-10-26" />
 
 <title>Homework Comments</title>
 
@@ -1721,7 +1721,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Homework Comments</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">10/24/2020</h4>
+<h4 class="date">10/26/2020</h4>
 
 </div>
 
@@ -2040,7 +2040,7 @@ P(PHX \cap LAX\cap MOB ) = P(PHX) \cdot P(LAX) \cdot P(MOB) = \frac{4}{31}\cdot\
 <h2>Section 7.5</h2>
 <div id="section-18" class="section level3">
 <h3>#3</h3>
-<p><span class="math inline">\(E[\hat p]=p=0.1\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.1(1-0.1)}{50}}\)</span>. By continuous correction,</p>
+<p><span class="math inline">\(E[\hat p]=p=0.1\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.1(1-0.1)}{50}}\)</span>. By <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a>,</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>The approximate probability of getting no defective batteries is</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">pnorm</span>(<span class="fl">0.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">50</span>, <span class="fl">0.1</span>, <span class="kw">sqrt</span>(<span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.9</span> <span class="op">/</span><span class="st"> </span><span class="dv">50</span>)) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">50</span>, <span class="fl">0.1</span>, <span class="kw">sqrt</span>(<span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.9</span> <span class="op">/</span><span class="st"> </span><span class="dv">50</span>))</span></code></pre></div>
@@ -2055,7 +2055,7 @@ P(PHX \cap LAX\cap MOB ) = P(PHX) \cdot P(LAX) \cdot P(MOB) = \frac{4}{31}\cdot\
 </div>
 <div id="section-19" class="section level3">
 <h3>#5</h3>
-<p><span class="math inline">\(E[\hat p]=p=0.092\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.092(1-0.092)}{400}}\)</span>. By continuous correction,</p>
+<p><span class="math inline">\(E[\hat p]=p=0.092\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.092(1-0.092)}{400}}\)</span>. By <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a>,</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>The approximate probability that 40 or fewer German workers were unemployed is</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">pnorm</span>(<span class="fl">40.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">400</span>, <span class="fl">0.092</span>, <span class="kw">sqrt</span>(<span class="fl">0.092</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.092</span>) <span class="op">/</span><span class="st"> </span><span class="dv">400</span>))</span></code></pre></div>
@@ -2067,7 +2067,7 @@ P(PHX \cap LAX\cap MOB ) = P(PHX) \cdot P(LAX) \cdot P(MOB) = \frac{4}{31}\cdot\
 </div>
 <div id="section-20" class="section level3">
 <h3>#9</h3>
-<p><span class="math inline">\(E[\hat p]=p=0.4\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.4(1-0.4)}{350}}\)</span>. By continuous correction,</p>
+<p><span class="math inline">\(E[\hat p]=p=0.4\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.4(1-0.4)}{350}}\)</span>. By <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a>,</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>The approximate probability that more than 160 accepted students attending is</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">160.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">350</span>, <span class="fl">0.4</span>, <span class="kw">sqrt</span>(<span class="fl">0.4</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.4</span>) <span class="op">/</span><span class="st"> </span><span class="dv">350</span>))</span></code></pre></div>
@@ -2079,7 +2079,7 @@ P(PHX \cap LAX\cap MOB ) = P(PHX) \cdot P(LAX) \cdot P(MOB) = \frac{4}{31}\cdot\
 </div>
 <div id="section-21" class="section level3">
 <h3>#17</h3>
-<p><span class="math inline">\(E[\hat p]=p= 1 - 0.54 = 0.46\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.46(1-0.46)}{500}}\)</span>. By continuous correction,</p>
+<p><span class="math inline">\(E[\hat p]=p= 1 - 0.54 = 0.46\)</span>, and <span class="math inline">\(SD(\hat p) = \sqrt{\dfrac{p(1-p)}{n}}=\sqrt{\dfrac{0.46(1-0.46)}{500}}\)</span>. By <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a>,</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>The approximate probability that fewer than 250 graduate in four years is</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">pnorm</span>(<span class="fl">249.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">500</span>, <span class="fl">0.46</span>, <span class="kw">sqrt</span>(<span class="fl">0.46</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.46</span>) <span class="op">/</span><span class="st"> </span><span class="dv">500</span>))</span></code></pre></div>
@@ -2094,7 +2094,7 @@ The approximate probability that more than 175 but fewer than 225 students gradu
 </div>
 <div id="section-22" class="section level3">
 <h3>#19</h3>
-<p>By continuous correction,</p>
+<p>By <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a>,</p>
 <div class="rdrr">
 <ol style="list-style-type: lower-alpha">
 <li>
