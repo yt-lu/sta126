@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-10-28" />
 
 <title>Hypothesis Test for a Population Proportion</title>
 
@@ -1727,7 +1727,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Hypothesis Test for a Population Proportion</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">10/26/2020</h4>
+<h4 class="date">10/28/2020</h4>
 
 </div>
 
@@ -1764,13 +1764,50 @@ div.tocify {
 <li><strong><key>Null hypothesis</key></strong>: the hypothesis to be tested, denoted by <span class="math inline">\(H_0\)</span>.</li>
 <li><strong><key>Alternative hypothesis</key></strong>: the hypothesis to be established, denoted by <span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>.<br />
 </li>
-<li><strong><key>P-value</key></strong>: the probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct.</li>
+<li><strong><key>P-value</key></strong>: the (largest) probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct.</li>
 <li><strong><key>Type I error</key></strong>: Reject a true null hypothesis.</li>
 <li><strong><key>Type II error</key></strong>: Fail to reject a false null hypothesis.</li>
 </ul>
-<p><strong><ex>Example 1.</ex></strong> If we randomly draw (with replacement) 10 cards from a deck of standard cards, and observe ____ out of 10 are red, then can we conclude that this is not a fair deck of cards?</p>
+</div>
+<div id="two-sided-test" class="section level3">
+<h3>Two-sided Test</h3>
+<div class="framed">
+<p><span class="math inline">\(H_0: p=p_0\)</span></p>
+<p><span class="math inline">\(H_1: p\ne p_0\)</span></p>
+</div>
+<p><br></p>
+<p><strong><ex>Example 1.</ex></strong> If we randomly draw (with replacement) 10 cards from a deck of standard cards, and observe 3 out of 10 are red, then can we conclude that this is not a fair deck of cards?</p>
+<p>Let <span class="math inline">\(p\)</span> denote the true proportion of red cards.</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0.5\)</span></li>
+<li><span class="math inline">\(H_1: p \ne 0.5\)</span></li>
+<li>P-value:
+<ul>
+<li><p>Based on the binomial distribution:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.34375</code></pre></li>
+<li><p>Based on the normal approximation to the binomial distribution:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">3.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">10</span>, <span class="fl">0.5</span>, <span class="kw">sqrt</span>(<span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">10</span>))</span></code></pre></div>
+<pre><code>## [1] 0.3427817</code></pre>
+<p>If the cards were fair, the probability of getting 3 <strong>or fewer</strong> red cards, or 7 <strong>or more</strong> red cards in a sample of 10 cards is about 0.343.</p></li>
+</ul></li>
+<li>Conclusion: Based on a significance level of 0.05, if the cards were fair, the p-value is not small, meaning the data we observed is not rare. Therefore, we do not reject the hypothesis that the cards were fair.</li>
+</ul>
+<div class="framed">
+<p>Do not reject <span class="math inline">\(H_0\)</span> does NOT mean accept <span class="math inline">\(H_0\)</span>. It only means the population proportion assumed in the null hypothesis is merely one of many plausible population proportions.</p>
+</div>
+<p><br></p>
+<p><strong><ex>Book Example 9.10</ex></strong> Historical data indicate that 4 percent of the components produced at a certain manufacturing facility are defective. A particularly acrimonious labor dispute has recently been concluded, and management is curious about whether it will result in any change in this figure of 4 percent. If a random sample of 500 items indicated 16 defectives (3.2%), is this significant evidence, at the 5% level of significance, to conclude that a change has occurred?</p>
 <p><br><br><br><br><br></p>
 <p><br><br><br><br><br></p>
+</div>
+<div id="one-sided-tests" class="section level3">
+<h3>One-Sided Tests</h3>
+<div class="framed">
+<p><span class="math inline">\(H_0: p=p_0\)</span></p>
+<p><span class="math inline">\(H_1: p&gt; p_0\)</span> or <span class="math inline">\(p&lt;p_0\)</span></p>
+</div>
+<p><br></p>
 <p><strong><ex>Book Example 9.8</ex></strong> A noted educator claims that over half the adult U.S. population is concerned about the lack of educational programs shown on television. To gather data about this issue, a national polling service randomly chose and questioned 920 individuals. If 478 (52%) of those surveyed stated that they are concerned at the lack of educational programs on television, does this prove the claim of the educator?</p>
 <p><br><br><br><br><br></p>
 <p><br><br><br><br><br></p>
