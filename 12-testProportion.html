@@ -1770,7 +1770,7 @@ div.tocify {
 </ul>
 </div>
 <div id="two-sided-test" class="section level3">
-<h3>Two-sided Test</h3>
+<h3>Two-Sided Test</h3>
 <div class="framed">
 <p><span class="math inline">\(H_0: p=p_0\)</span></p>
 <p><span class="math inline">\(H_1: p\ne p_0\)</span></p>
@@ -1783,23 +1783,37 @@ div.tocify {
 <li><span class="math inline">\(H_1: p \ne 0.5\)</span></li>
 <li>P-value:
 <ul>
-<li><p>Based on the binomial distribution:</p>
+<li><p>Based on the binomial distribution (<span class="math inline">\(n=10\)</span> and <span class="math inline">\(p=0.5\)</span>):</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.34375</code></pre></li>
-<li><p>Based on the normal approximation to the binomial distribution:</p>
+<li><p>Based on the normal approximation (i.e., the sampling distribution of <span class="math inline">\(\hat p\)</span>), in which <span class="math inline">\(\scriptsize E[\hat p]=p=0.5\)</span> and <span class="math inline">\(\scriptsize SD(\hat p)=\sqrt{p(1-p)/n}=\sqrt{0.5(1-0.5)/10}\)</span>, with <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">3.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">10</span>, <span class="fl">0.5</span>, <span class="kw">sqrt</span>(<span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">10</span>))</span></code></pre></div>
 <pre><code>## [1] 0.3427817</code></pre>
 <p>If the cards were fair, the probability of getting 3 <strong>or fewer</strong> red cards, or 7 <strong>or more</strong> red cards in a sample of 10 cards is about 0.343.</p></li>
 </ul></li>
-<li>Conclusion: Based on a significance level of 0.05, if the cards were fair, the p-value is not small, meaning the data we observed is not rare. Therefore, we do not reject the hypothesis that the cards were fair.</li>
+<li>Conclusion: Based on a significance level of 0.05, the p-value is not small, meaning the data we observed is not rare. Therefore, we do not reject the hypothesis that the cards were fair.</li>
 </ul>
 <div class="framed">
 <p>Do not reject <span class="math inline">\(H_0\)</span> does NOT mean accept <span class="math inline">\(H_0\)</span>. It only means the population proportion assumed in the null hypothesis is merely one of many plausible population proportions.</p>
 </div>
 <p><br></p>
-<p><strong><ex>Book Example 9.10</ex></strong> Historical data indicate that 4 percent of the components produced at a certain manufacturing facility are defective. A particularly acrimonious labor dispute has recently been concluded, and management is curious about whether it will result in any change in this figure of 4 percent. If a random sample of 500 items indicated 16 defectives (3.2%), is this significant evidence, at the 5% level of significance, to conclude that a change has occurred?</p>
-<p><br><br><br><br><br></p>
-<p><br><br><br><br><br></p>
+<p><strong><ex>Book Example 9.10</ex></strong> Historical data indicate that 4% of the components produced at a certain manufacturing facility are defective. A particularly acrimonious labor dispute has recently been concluded, and management is curious about whether it will result in any change in this figure of 4 percent. If a random sample of 500 items indicated 16 defectives (3.2%), is this significant evidence, at the 5% level of significance, to conclude that a change has occurred?</p>
+<p>Let <span class="math inline">\(p\)</span> be the true proportion of defective components.</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0.04\)</span></li>
+<li><span class="math inline">\(H_1: p \ne 0.04\)</span></li>
+<li>P-value:
+<ul>
+<li><p>Based on the binomial distribution (<span class="math inline">\(n=500\)</span> and <span class="math inline">\(p=0.04\)</span>):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">16</span>, <span class="dv">500</span>, <span class="fl">0.04</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4316072</code></pre></li>
+<li><p>Based on the normal approximation (i.e., the sampling distribution of <span class="math inline">\(\hat p\)</span>), in which <span class="math inline">\(\scriptsize E[\hat p]=p=0.04\)</span> and <span class="math inline">\(\scriptsize SD(\hat p)=\sqrt{p(1-p)/n}=\sqrt{0.04(1-0.04)/500}\)</span>, with <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">16.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">500</span>, <span class="fl">0.04</span>, <span class="kw">sqrt</span>(<span class="fl">0.04</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.04</span>) <span class="op">/</span><span class="st"> </span><span class="dv">500</span>))</span></code></pre></div>
+<pre><code>## [1] 0.4244284</code></pre>
+<p>If the true proportion of defective components was 0.04, the probability of getting 16 <strong>or fewer</strong> defectives, or 24 <strong>or more</strong> defectives in a sample of 500 units is about 0.424.</p></li>
+</ul></li>
+<li>Conclusion: Based on a significance level of 0.05, the p-value is not small, meaning the data we observed is not rare. Therefore, we do not reject the hypothesis that the true proportion of defective components is 0.04.</li>
+</ul>
 </div>
 <div id="one-sided-tests" class="section level3">
 <h3>One-Sided Tests</h3>
@@ -1808,9 +1822,23 @@ div.tocify {
 <p><span class="math inline">\(H_1: p&gt; p_0\)</span> or <span class="math inline">\(p&lt;p_0\)</span></p>
 </div>
 <p><br></p>
-<p><strong><ex>Book Example 9.8</ex></strong> A noted educator claims that over half the adult U.S. population is concerned about the lack of educational programs shown on television. To gather data about this issue, a national polling service randomly chose and questioned 920 individuals. If 478 (52%) of those surveyed stated that they are concerned at the lack of educational programs on television, does this prove the claim of the educator?</p>
-<p><br><br><br><br><br></p>
-<p><br><br><br><br><br></p>
+<p><strong><ex>Book Example 9.8</ex></strong> A noted educator claims that over half the adult U.S. population is concerned about the lack of educational programs shown on television. To gather data about this issue, a national polling service randomly chose and questioned 920 individuals. If 478 (52%) of those surveyed stated that they are concerned about the lack of educational programs on television, does this prove the claim of the educator?</p>
+<p>Let <span class="math inline">\(p\)</span> be the true proportion of people who are concerned about the lack of educational programs on television.</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0.5\)</span></li>
+<li><span class="math inline">\(H_1: p &gt; 0.5\)</span></li>
+<li>P-value:
+<ul>
+<li><p>Based on the binomial distribution (<span class="math inline">\(n=920\)</span> and <span class="math inline">\(p=0.5\)</span>):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">477</span>, <span class="dv">920</span>, <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1242603</code></pre></li>
+<li><p>Based on the normal approximation (i.e., the sampling distribution of <span class="math inline">\(\hat p\)</span>), in which <span class="math inline">\(\scriptsize E[\hat p]=p=0.5\)</span> and <span class="math inline">\(\scriptsize SD(\hat p)=\sqrt{p(1-p)/n}=\sqrt{0.5(1-0.5)/920}\)</span>, with <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">477.5</span> <span class="op">/</span><span class="st"> </span><span class="dv">920</span>, <span class="fl">0.5</span>, <span class="kw">sqrt</span>(<span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">920</span>))</span></code></pre></div>
+<pre><code>## [1] 0.1242673</code></pre>
+<p>If true proportion of people who are concerned about the lack of educational programs on television was 0.5, the probability of seeing 478 <strong>or more</strong> concerned people in a sample of 920 is about 0.124.</p></li>
+</ul></li>
+<li>Conclusion: Based on a significance level of 0.05, the p-value is not small, meaning the data we observed is not rare. Therefore, we do not reject the hypothesis that the true proportion of people who are concerned about the lack of educational programs on television is 0.5.</li>
+</ul>
 <p><strong><ex>Book Example 9.9</ex></strong> A computer chip manufacturer claims that at most 2% of the chips it produces are defective. An electronics company, impressed by that claim, has purchased a large quantity of chips. To determine if the manufacturer’s claim is plausible, the company has decided to test a sample of 400 of these chips. If there are 13 defective chips (3.25 percent) among these 400, does this disprove (at the 5 percent level of significance) the manufacturer’s claim?</p>
 <p><br><br><br><br><br></p>
 <p><br><br><br><br><br></p>
