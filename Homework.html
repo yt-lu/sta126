@@ -2126,9 +2126,12 @@ The approximate probability that fewer than 50 sleep 6 hours or less nightly is 
 <h2>Section 8.5</h2>
 <div id="section-24" class="section level3">
 <h3>#11</h3>
+<p>From question 10, MOE is 2045.32. So to maintain the MOE while increase the confidence level to 99%, we need</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>(<span class="kw">qnorm</span>(<span class="fl">0.995</span>) <span class="op">*</span><span class="st"> </span><span class="dv">3300</span> <span class="op">/</span><span class="st"> </span><span class="fl">2045.32</span>) <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 17.27188</code></pre>
 <div class="rdrr">
 <p>
-18 tires.
+At least 18 tires.
 </p>
 </div>
 </div>
