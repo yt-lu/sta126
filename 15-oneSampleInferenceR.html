@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-11-11" />
+<meta name="date" content="2020-11-13" />
 
 <title>One-Sample Inference with R</title>
 
@@ -1727,7 +1727,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">One-Sample Inference with R</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">11/11/2020</h4>
+<h4 class="date">11/13/2020</h4>
 
 </div>
 
@@ -1736,69 +1736,71 @@ div.tocify {
 </hr>
 <div id="inference-about-p" class="section level3">
 <h3>Inference about <span class="math inline">\(p\)</span></h3>
-<div class="framed">
 <ol style="list-style-type: decimal">
-<li>Confidence intervals.</li>
-</ol>
+<li><p>Confidence intervals.</p>
 <ul>
 <li>Fill the variable <code>x</code> as the number of success in the sample.</li>
 <li>Fill the variable <code>n</code> as the sample size.</li>
+<li>Fill the confidence level <code>conf.level =</code>. The default value is 0.95.</li>
 </ul>
-</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">prop.test</span>(x, n)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">binom.test</span>(x, n)</span></code></pre></div>
-<div class="framed">
-<ol style="list-style-type: decimal">
-<li>Hypothesis tests.</li>
-</ol>
-<ul>
-<li>Fill <code>p =</code> as stated in <span class="math inline">\(H_0\)</span>. Default value is 0.5.</li>
-<li>Choose one of the three options for the <code>alternative =</code> as stated in <span class="math inline">\(H_1\)</span>.</li>
-<li>Fill the confidence level <code>conf.level =</code>. Default value is 0.95.</li>
-</ul>
-</div>
-<p><br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">prop.test</span>(x, n, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">binom.test</span>(x, n, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div></li>
+<li><p>Hypothesis tests.</p>
 <p>One option is the <code>prop.test</code> command.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">prop.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>, <span class="dt">correct =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">prop.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>, <span class="dt">correct =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">prop.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>, <span class="dt">correct =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">prop.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">prop.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">prop.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <p>Another option is the <code>binom.test</code> command.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">binom.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">binom.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">binom.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<p><strong><ex>Book Problem Set 8.7 #4</ex></strong> A poll of 1200 voters in 1980 gave Ronald Reagan 57 percent of the vote. Construct a 99 percent confidence interval estimate of the proportion of the population who favored Reagan at the time of the poll.</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Test if the sample data supports the claim that majority of voters favored Reagan at the time of the poll.</p></li>
-<li><p>Construct a 95% confidence interval for all voter who favored Reagan at the time of the poll.</p></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">binom.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">binom.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">binom.test</span>(x, n, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<p>In either one of the two commands above,</p>
+<ul>
+<li>Fill <code>p =</code> as stated in <span class="math inline">\(H_0\)</span>. The default value is 0.5.</li>
+<li>Choose one of the three options for the <code>alternative =</code> based on <span class="math inline">\(H_1\)</span>.</li>
+</ul></li>
 </ol>
-<p><br><br><br></p>
-<p>As you see the results of confidence intervals are not all the same. Here is <a href="https://towardsdatascience.com/five-confidence-intervals-for-proportions-that-you-should-know-about-7ff5484c024f" target="_blank">a nice review article</a> about why.</p>
+<p><strong><ex>Book Problem Set 8.7 #4</ex></strong> A poll of 1200 voters in 1980 gave Ronald Reagan 57 percent of the vote.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Test if the sample data supports the claim that majority of voters favored Reagan at the time of the poll.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">prop.test</span>(<span class="dv">1200</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">binom.test</span>(<span class="dv">1200</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div></li>
+<li><p>Construct a 99% confidence interval for all voter who favored Reagan at the time of the poll.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">prop.test</span>(<span class="dv">1200</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">binom.test</span>(<span class="dv">1200</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</span></code></pre></div></li>
+</ol>
+<div class="more">
+<p>Comparing with the confidence interval that you learned earlier, you will see the results of confidence intervals are not all the same. Here is <a href="https://towardsdatascience.com/five-confidence-intervals-for-proportions-that-you-should-know-about-7ff5484c024f" target="_blank">a nice review article</a> that explains why.</p>
+</div>
 </div>
 <div id="inference-about-mu" class="section level3">
 <h3>Inference about <span class="math inline">\(\mu\)</span></h3>
-<div class="framed">
 <ol style="list-style-type: decimal">
 <li>Define the variable <code>x</code> as the raw data.</li>
 <li>For confidence intervals:
 <ul>
-<li>Fill in an arbitrary value for <code>mu =</code>.</li>
-<li>Use <code>alternative = &quot;two.sided&quot;</code>.</li>
-</ul></li>
+<li>Fill in the confidence level <code>conf.level =</code>. The default is 0.95.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(...)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">t.test</span>(x, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div></li>
 <li>For hypothesis test:
 <ul>
 <li>Fill in the value of <code>mu =</code> as stated in the null hypothesis <span class="math inline">\(H_0\)</span>.</li>
 <li>Select one of the three options for <code>alternative =</code> based on <span class="math inline">\(H_1\)</span>.</li>
-</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(...) <span class="co"># raw data</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">t.test</span>(x, <span class="dt">mu =</span> , <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>) </span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">t.test</span>(x, <span class="dt">mu =</span> , <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">t.test</span>(x, <span class="dt">mu =</span> , <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div></li>
 </ol>
-</div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(...) <span class="co"># raw data</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">t.test</span>(x, <span class="dt">mu =</span> , <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>) </span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">t.test</span>(x, <span class="dt">mu =</span> , <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">t.test</span>(x, <span class="dt">mu =</span> , <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <p><strong><ex>Book Problem Set 8.6 #2</ex></strong> The manager of a shipping department of a mail-order operation located in New York has been receiving complaints about the length of time it takes for customers in California to receive their orders. To learn more about this potential problem, the manager chose a random sample of 12 orders and then checked to see how many days it took to receive each of these orders. The resulting data were <span class="math display">\[15, 20, 10, 11, 7, 12, 9, 14, 12, 8, 13, 16.\]</span></p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Test if the sample supports the claim that, on average, it takes more than 10 days for customers in California to receive their orders.</p></li>
-<li><p>Construct a 95% confidence interval for the true average length of time for customers in California to receive their orders.</p></li>
+<li><p>Test if the sample supports the claim that, on average, it takes more than 10 days for customers in California to receive their orders.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">16</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">t.test</span>(x, <span class="dt">mu =</span> <span class="dv">10</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div></li>
+<li><p>Construct a 95% confidence interval for the true average length of time for customers in California to receive their orders.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">16</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">t.test</span>(x, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div></li>
 </ol>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
