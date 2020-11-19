@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2020-11-17" />
+<meta name="date" content="2020-11-19" />
 
 <title>Homework Comments</title>
 
@@ -1721,7 +1721,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Homework Comments</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">11/17/2020</h4>
+<h4 class="date">11/19/2020</h4>
 
 </div>
 
@@ -2249,6 +2249,92 @@ At least 18 tires.
 <div id="section-40" class="section level3">
 <h3>#15</h3>
 <p>P-value = 0.0068</p>
+</div>
+</div>
+</div>
+<div id="homework-13" class="section level1">
+<h1>Homework 13</h1>
+<div id="section-10.4" class="section level2">
+<h2>Section 10.4</h2>
+<div id="section-41" class="section level3">
+<h3>#1</h3>
+<ul>
+<li>Let <span class="math inline">\(\mu_1\)</span> be the true systolic blood pressure for all smokers.</li>
+<li>Let <span class="math inline">\(\mu_2\)</span> be the true systolic blood pressure for all nonsmokers.</li>
+<li><span class="math inline">\(H_0: \mu_1 = \mu_2\)</span></li>
+<li><span class="math inline">\(H_1: \mu_1 \ne \mu_2\)</span></li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">124</span>, <span class="dv">134</span>, <span class="dv">136</span>, <span class="dv">125</span>, <span class="dv">133</span>, <span class="dv">127</span>, <span class="dv">135</span>, <span class="dv">131</span>, <span class="dv">133</span>, <span class="dv">125</span>, <span class="dv">118</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a>ns &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">130</span>, <span class="dv">122</span>, <span class="dv">128</span>, <span class="dv">129</span>, <span class="dv">118</span>, <span class="dv">122</span>, <span class="dv">116</span>, <span class="dv">127</span>, <span class="dv">135</span>, <span class="dv">120</span>, <span class="dv">122</span>, <span class="dv">120</span>, <span class="dv">115</span>, <span class="dv">123</span>)</span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="kw">t.test</span>(s, ns, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  s and ns
+## t = 2.5239, df = 21.636, p-value = 0.01947
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   1.033961 10.615390
+## sample estimates:
+## mean of x mean of y 
+##  129.1818  123.3571</code></pre>
+<ul>
+<li>Based on a significance level of 0.01, the p-value is not small. We do not reject the null hypothesis. There is no sufficient evidence to show that the mean systolic blood pressure levels are different between smokers and nonsmokers.</li>
+<li>Based on a significance level of 0.05, the p-value is small. We reject the null hypothesis. There is sufficient evidence to show that the mean systolic blood pressure levels are different between smokers and nonsmokers.</li>
+</ul>
+</div>
+<div id="section-42" class="section level3">
+<h3>#4</h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>generic &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">14.2</span>, <span class="fl">14.7</span>, <span class="fl">13.9</span>, <span class="fl">15.3</span>, <span class="fl">14.8</span>, <span class="fl">13.6</span>, <span class="fl">14.6</span>, <span class="fl">14.9</span>, <span class="fl">14.2</span>)</span>
+<span id="cb37-2"><a href="#cb37-2"></a>name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">14.3</span>, <span class="fl">14.9</span>, <span class="fl">14.4</span>, <span class="fl">13.8</span>, <span class="fl">15.0</span>, <span class="fl">15.1</span>, <span class="fl">14.4</span>, <span class="fl">14.7</span>, <span class="fl">14.9</span>)</span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="kw">t.test</span>(generic, name, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="kw">t.test</span>(name, generic, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="section-10.5" class="section level2">
+<h2>Section 10.5</h2>
+<div id="section-43" class="section level3">
+<h3>#1</h3>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>before &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">73</span>, <span class="dv">67</span>, <span class="dv">68</span>, <span class="dv">60</span>, <span class="dv">76</span>, <span class="dv">80</span>, <span class="dv">73</span>, <span class="dv">77</span>, <span class="dv">66</span>, <span class="dv">58</span>, <span class="dv">82</span>, <span class="dv">78</span>)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>after &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">77</span>, <span class="dv">69</span>, <span class="dv">73</span>, <span class="dv">70</span>, <span class="dv">74</span>, <span class="dv">88</span>, <span class="dv">76</span>, <span class="dv">82</span>, <span class="dv">69</span>, <span class="dv">61</span>, <span class="dv">84</span>, <span class="dv">80</span>)</span>
+<span id="cb38-3"><a href="#cb38-3"></a><span class="kw">t.test</span>(before, after, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  before and after
+## t = -4.2197, df = 11, p-value = 0.001437
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -5.705997 -1.794003
+## sample estimates:
+## mean of the differences 
+##                   -3.75</code></pre>
+</div>
+<div id="section-44" class="section level3">
+<h3>#5</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">31</span>, <span class="dv">29</span>, <span class="dv">24</span>, <span class="dv">28</span>, <span class="dv">31</span>, <span class="dv">27</span>)</span>
+<span id="cb40-2"><a href="#cb40-2"></a>x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">14</span>, <span class="dv">34</span>, <span class="dv">36</span>, <span class="dv">15</span>, <span class="dv">23</span>, <span class="dv">27</span>, <span class="dv">26</span>, <span class="dv">19</span>, <span class="dv">30</span>, <span class="dv">28</span>)</span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="kw">t.test</span>(x1, x2, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  x1 and x2
+## t = 0.69469, df = 13, p-value = 0.4995
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -2.260535  4.403393
+## sample estimates:
+## mean of the differences 
+##                1.071429</code></pre>
+</div>
+</div>
+<div id="section-10.6" class="section level2">
+<h2>Section 10.6</h2>
+<div id="section-45" class="section level3">
+<h3>#1</h3>
+</div>
+<div id="section-46" class="section level3">
+<h3>#11</h3>
 </div>
 </div>
 </div>
