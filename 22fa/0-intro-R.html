@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2022-08-23" />
+<meta name="date" content="2022-08-24" />
 
 <title>Getting Started with R</title>
 
@@ -1720,7 +1720,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Getting Started with R</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">08/23/2022</h4>
+<h4 class="date">08/24/2022</h4>
 
 </div>
 
@@ -1759,6 +1759,27 @@ div.tocify {
 <span id="cb1-4"><a href="#cb1-4"></a><span class="kw">sqrt</span>(<span class="dv">36</span>)</span></code></pre></div>
 <p><strong><ex>Practice</ex></strong> Calculate <span class="math inline">\(0.43 + 1.96 \times \sqrt{\frac{0.43(1 - 0.43)}{108}}\)</span>.</p>
 </div>
+<ol start="2" style="list-style-type: decimal">
+<li>Input data manually. For example, the ages of five people are 34, 82, 71, 36, 68.</li>
+</ol>
+<div class="ilist">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="dv">82</span>, <span class="dv">71</span>, <span class="dv">36</span>, <span class="dv">68</span>)</span></code></pre></div>
+<p>We deposited the data in the variable <code>age</code>. This was done in two steps.</p>
+<ul>
+<li>The <opt>c</opt> function combined its arguments (i.e., the ages) and creates a list.</li>
+<li>The arrow sign (<code>&lt;-</code>) deposited the content on the right-hand side of the arrow (i.e., the ages) to the <em>R</em> variable on the left-hand side of the arrow (i.e., the variable <code>age</code>).</li>
+</ul>
+<p>Now if we type <code>age</code> in the console, then its content is printed.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>age</span></code></pre></div>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Read data from a file.</li>
+</ol>
+<div class="ilist">
+<p>Of course, it will not be practical to input larger data set manually. Instead, we read the data set from a file. For example</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://albums.yuanting.lu/sta126/22fa/credit.csv&quot;</span>)</span></code></pre></div>
+<p>The line reads the data set from the file <code>credit.csv</code> and saves it in the <em>R</em> variable <code>df</code>, so that from now on, whenever we type <code>df</code>, <em>R</em> knows to pull out this saved data set. Let’s try it.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df</span></code></pre></div>
 <script type="text/javascript">
 $(document).ready(function() {
   $('.footnotes ol').appendTo('#endnotes');
