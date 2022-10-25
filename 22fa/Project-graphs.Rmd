@@ -1,0 +1,165 @@
+---
+title: "Project Examples"
+author: "Yuanting Lu"
+date: "`r format(Sys.Date(), format = '%m/%d/%Y')`"
+output: 
+  html_document:
+    theme: united
+    highlight: monochrome
+    css: notes-style.css
+    toc: TRUE
+    number_sections: FALSE
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<hr class="left"> </hr>
+
+## Pie Chart
+
+```{r}
+mycolors <- c('#6A99D0', '#F5C242', '#A5A5A5', '#DE8344')
+sales <- c(1728.02, 3456.04, 1851.45, 5307.49)
+pie(sales, init.angle = 40, col = mycolors, labels = '', main = 'Sales Chart')
+legend(1, 0.5, c("Toys","Furniture","Home Decor", 'Electronics'), 
+       cex = 0.7, 
+       fill = mycolors)
+text(0.2, 0.4, '14%') 
+text(-0.3, 0.2, '28%')
+text(-0.35, -0.25, '15%') 
+text(0.3, -0.3, '43%') # 0.3 and -0.3 in here are the x and y-coordinates of the text
+```
+
+
+## Horizontal Bargraph
+
+```{r}
+par(mar = c(4, 7, 2, 1), oma = c(3, 2, 0, 0))
+impact <-c(17.7, 9.9, 9.1, 5.4, 3.8, 3.0, 2.9, 2.1, 1, 0.4, 0.1)
+food <-c("Beef", "Lamb", "Farmed crustaceans", "Cheese", "Pork", "Farmed fish", "Poultry", "Eggs", "Tofu", "Beans", "Nuts")
+barplot(impact[order(impact,decreasing=FALSE)], 
+        names.arg=food[order(impact,decreasing=FALSE)],  
+        horiz = TRUE, las = 1, 
+        col = "orange",
+        xlim = c(0, 20), xlab = "Avg. Greenhouse Gas Impact", ylab = "",
+        main = "Effect of Food We Eat on Environment"
+        )
+```
+
+
+## Stacked Bargraph
+
+```{r}
+nonfatal <- c(55, 56, 69)
+fatal <- c(3, 3, 1)
+x <- as.matrix(rbind(nonfatal, fatal))
+colnames(x) <- c("2005", "2006", "2007")
+barplot(x, ylim = c(0, 100), col = c("lightblue", "royalblue"), 
+        main = "Shark Attacks", xlab = "Year", ylab = "Number of Attacks", 
+        las = 1) 
+
+legend("topleft", legend = c("Non Fatal", "Fatal"), 
+       fill = c("lightblue", "royalblue")
+       )
+```
+
+## Horizontal and Stacked
+
+```{r}
+savings <-matrix(c(20, 13, 36, 19, 12,
+                   28, 10, 36, 14, 12,
+                   38, 16, 32, 6, 8,
+                   41, 18, 27, 7,7), nrow =5)
+colnames(savings) <-c( "70-79", "60-69", "50-59", "40-49")
+par(mar =c(4,6,6,2), mgp =c(4, 1, 0), xpd =TRUE)
+pic <-barplot(savings, horiz =TRUE,  xaxt ="n", space =0.5,
+              col =c("royalblue", "dodgerblue", "green", "darkseagreen", "gray30"), 
+              main ="How much do you currently have saved for retirement?", 
+              ylab ="Age", las =2)
+legend("top", inset =-0.15, ncol =5, box.col ="blue", cex = 0.7,
+       legend =c("Less than $50K", "$50-99K", "$100-500K", "$500-999K", "$1M+"),
+       fill =c("royalblue", "dodgerblue", "green", "darkseagreen", "gray30"))
+
+text(pic, x =c(10, 16, 20, 25), c("20%", "28%","38%", "41%"))
+text(pic, x =c(25, 34, 45, 50), c("13%", "10%", "16%", "18%"))
+text(pic, x =c(50, 57, 70, 75), c("36%", "36%", "32%", "27%"))
+text(pic, x =c(80, 83, 89, 90), c("19%", "14%", "6%", "7%"))
+text(pic, x =c(95, 95, 96, 97), c("12%", "12%", "8%", "7%"))
+
+```
+
+
+## Side-by-Side Bargraph
+
+```{r}
+globalhuman <- c(1700, 600, 300)
+globalnature <- c(1200, 400, 250)
+x <- as.matrix(rbind(globalhuman, globalnature))
+barplot(x, beside = TRUE, ylim = c(0, 2000))  # Initiate bargraph
+abline(h = c(500, 1000, 1500, 2000),col = "lightgray") # Plot the grid lines
+par(new = TRUE) # Continue to plot on the same panel
+
+# Plot the bargraph again so that the grid lines are in the background
+barplot(x, beside = TRUE, 
+        ylim = c(0, 2000),
+        col = c("coral", "lightblue"), 
+        names.arg = c("2000-2005", "2005-2010", "2010-2015"), 
+        main = "Global Mangrove Loss by Driver (km)")
+legend("topright", legend = c("Human-driven", "Natural"), fill = c("coral", "lightblue"))
+```
+
+
+## Decorate Bargraphs
+
+### Colors and Texts
+
+```{r}
+years <- c(2009, 2010, 2011, 2012, 2013, 2014)
+concussions <- c(92, 129, 142, 161, 145, 123)
+
+par(bg = "#87A86F") # Background color
+pic <- barplot(concussions, names.arg = years, ylim = c(0, 200), las = 1,
+               col = "#D2E1BC", 
+               main = "Concussions declining, finally!")
+
+text(pic, y = concussions - 10, labels = concussions) # Add texts
+```
+
+### Width and Space
+
+```{r}
+ballots <- c(14783, 13989, 9012, 21393, 16112)
+groups <- c("Democrats", "Republicans", "Unaffiliated", "Female", "Male")
+pic <- barplot(ballots, 
+               xaxt = 'n', # Remove x lables
+               cex.names = 0.7,
+               main = "Absentee Ballots in 2014 in North Carolina",
+               col = c("blue", "red", "purple", "yellow", "maroon"), 
+               width = 0.5,
+               space = c(1, 1, 1, 4, 1), 
+               ylim = c(0, 25000))
+text(pic, ballots + 1000, labels = ballots)
+text(cex=1, x=c(1, 2, 3, 5.5, 6.5) - 0.5, y=-2500, groups, xpd=TRUE, srt=35) # Add x labels and rotate them
+```
+
+
+## Time Series
+
+```{r}
+x <- c(2.7, 2.5, 2.45, 2.7, 2.5, 2.3, 2.6, 3.05, 3.3, 3.01, 3.58)
+year <- 2009:2019
+plot(year, x, type = "b", col = "red", ylim = c(0, 3.6), xaxt = "n", lwd = 3, las = 1,
+     xlab = "Year",
+     ylab = "Home Run Percentage Per Plate Appearance", 
+     main = "The percentage of plate appearances that result in\n a home run has shot up in recent years")
+abline(h = seq(0, 3.6, by = 0.2), col = "lightgray")
+axis(1, at = 2009:2019, labels = 2009:2019)
+
+
+```
+
