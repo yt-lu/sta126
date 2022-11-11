@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2022-11-07" />
+<meta name="date" content="2022-11-11" />
 
 <title>Confidence Interval for a Population Proportion</title>
 
@@ -1641,7 +1641,7 @@ div.tocify {
 <h1 class="title toc-ignore">Confidence Interval for a Population
 Proportion</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">11/07/2022</h4>
+<h4 class="date">11/11/2022</h4>
 
 </div>
 
@@ -1655,8 +1655,8 @@ a <strong><key>point estimator</key></strong> for the true population
 proportion <span class="math inline">\(p\)</span>. The standard
 deviation of <span class="math inline">\(\hat{p}\)</span> is called the
 <strong><key>standard error</key></strong> of <span class="math inline">\(\hat{p}\)</span>, often approximated by <span class="math display">\[se(\hat{p})=\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}.\]</span></p>
-<p>Standard error meansures the spread of the sampling distribution of
-<span class="math inline">\(\hat{p}\)</span>.</p>
+<p>Standard error meansures the <strong>spread</strong> of the sampling
+distribution of <span class="math inline">\(\hat{p}\)</span>.</p>
 <p><strong><ex>Book Example 8.3</ex></strong> A school district is
 trying to determine its students’ reaction to a proposed dress code. To
 do so, the school selected a random sample of 50 students and questioned
@@ -1671,9 +1671,11 @@ them. If 20 were in favor of the proposal, then</p>
 <h3>Interval Estimator</h3>
 <blockquote>
 <p>“Sacrificing some precision in our estimate, in moving from a point
-to an interval, . . . resulted in increased confidence . . . The purpose
-of using an interval estimator rather than a point estimator is to have
-some guarantee of capturing the parameter of interest.”</p>
+to an interval, has resulted in increased confidence that our assertion
+is correct. The purpose of using an interval estimator rather than a
+point estimator is to have some guarantee of capturing the parameter of
+interest.” – Casella and Berger, <em>Statistical Inference</em>, 2nd
+edition, p. 418.</p>
 </blockquote>
 <div class="framed">
 <p>A 95% confidence interval for a population proportion <span class="math inline">\(p\)</span> is <span class="math display">\[\left(\hat{p} -
@@ -1713,8 +1715,8 @@ of all the students at the university who are nonsmokers.</p>
 </div>
 <div id="margin-of-error" class="section level3">
 <h3>Margin of Error</h3>
-<p>The <strong><key>width</key></strong> of a confidence interval is
-called the <strong><key>margin of error</key></strong>.</p>
+<p>Half the width of a confidence interval is called the
+<strong><key>margin of error</key></strong>.</p>
 <p><span class="math display">\[MOE =
 z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}.\]</span></p>
 <p>The largest possible value for <span class="math inline">\(\hat{p}(1-\hat{p})\)</span> is 0.25. Therefore,
