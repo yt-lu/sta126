@@ -1710,7 +1710,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Homework Comments</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">Last updated 11/10/2022</h4>
+<h4 class="date">Last updated 11/24/2022</h4>
 
 </div>
 
@@ -2183,69 +2183,85 @@ nightly is 0.0193.</li>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>book_costs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">422</span>, <span class="dv">146</span>, <span class="dv">368</span>, <span class="dv">52</span>, <span class="dv">212</span>, <span class="dv">454</span>, <span class="dv">366</span>, <span class="dv">711</span>, <span class="dv">227</span>, <span class="dv">680</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(book_costs)</span></code></pre></div>
 <pre><code>## [1] 363.8</code></pre>
+</div>
+</div>
+</div>
+<div id="homework-8" class="section level1">
+<h1>Homework 8</h1>
+<div id="section-9.4" class="section level2">
+<h2>Section 9.4</h2>
+<div id="section-23" class="section level3">
+<h3>#1</h3>
+<p>P-value = 0.260</p>
+</div>
+<div id="section-24" class="section level3">
+<h3>#7</h3>
+<p>P-value = 0.00076</p>
+</div>
+<div id="section-25" class="section level3">
+<h3>#13</h3>
+<p>P-value = 0.0694</p>
+</div>
+<div id="section-26" class="section level3">
+<h3>#15</h3>
+<p>P-value = 0.0068</p>
+</div>
+</div>
+<div id="section-9.5" class="section level2">
+<h2>Section 9.5</h2>
+<div id="section-27" class="section level3">
+<h3>#1</h3>
+<p>Let <span class="math inline">\(p\)</span> be the true proportion of
+patients who get effective treatment by using the new drug.</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0.72\)</span></li>
+<li><span class="math inline">\(H_1: p&gt;0.72\)</span></li>
+<li>P-value:</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">41</span>, <span class="dv">50</span>, <span class="fl">0.72</span>)</span></code></pre></div>
+<pre><code>## [1] 0.03645886</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">41.5</span><span class="sc">/</span><span class="dv">50</span>, <span class="fl">0.72</span>, <span class="fu">sqrt</span>(<span class="fl">0.72</span> <span class="sc">*</span> <span class="fl">0.28</span> <span class="sc">/</span> <span class="dv">50</span>))</span></code></pre></div>
+<pre><code>## [1] 0.04160677</code></pre>
+<p>Conclusion: Based on a 0.05 significance level, the p-value is small.
+We reject the null hypothesis. There is sufficient evidence to show that
+the new drug is more effective than the old one.</p>
+</div>
+<div id="section-28" class="section level3">
+<h3>#3</h3>
+<ul>
+<li>P-value = 0.262 (Binomial).</li>
+<li>P-value = 0.256 (Normal approximation with continuous
+correction).</li>
+</ul>
+</div>
+<div id="section-29" class="section level3">
+<h3>#5</h3>
+<ul>
+<li>(b). P-value = 0.136</li>
+<li>(c). P-value = 0.052</li>
+<li>(d). P-value = 0.004</li>
+</ul>
+</div>
+<div id="section-30" class="section level3">
+<h3>#9</h3>
+<ul>
+<li>P-value = 0.292 (Binomial).</li>
+<li>P-value = 0.314 (Normal approximation with continuous
+correction).</li>
+</ul>
+</div>
+<div id="section-31" class="section level3">
+<h3>#11</h3>
+<ul>
+<li>P-value = 0.17</li>
+</ul>
+</div>
+<div id="section-32" class="section level3">
+<h3>#15</h3>
+<ul>
+<li>P-value = 0 (round to three decimal places).</li>
+</ul>
 <!--
-# Homework 10
-
-## Section 9.5
-
-### \#1 
-
-Let $p$ be the true proportion of patients who get effective treatment by using the new drug.
-
-- $H_0: p = 0.72$
-- $H_1: p>0.72$
-- P-value:
-
-```r
-1 - pbinom(41, 50, 0.72)
-```
-
-```
-## [1] 0.03645886
-```
-
-```r
-1 - pnorm(41.5/50, 0.72, sqrt(0.72 * 0.28 / 50))
-```
-
-```
-## [1] 0.04160677
-```
-
-Conclusion: Based on a 0.05 significance level, the p-value is small. We reject the null hypothesis. There is sufficient evidence to show that the new drug is more effective than the old one. 
-
-### \#3 
-
-- P-value = 0.262 (Binomial).
-- P-value = 0.256 (Normal approximation with continuous correction).
-
-
-### \#5
-
-  - (b). P-value = 0.136 
-  - (c). P-value = 0.052
-  - (d). P-value = 0.004
-
-
-
-### \#9
-
-- P-value = 0.292 (Binomial).
-- P-value = 0.314 (Normal approximation with continuous correction).
-
-
-### \#11
-
-- P-value = 0.17
-
-
-
-### \#15
-
-- P-value = 0 (round to three decimal places).
-
-
-
 # Homework 11
 
 ## Section 8.5
@@ -2315,27 +2331,6 @@ P-value = 0.091
 ### \#9
 
 P-value = 0
-
-## Section 9.4
-
-### \#1
-
-P-value = 0.260
-
-
-### \#7
-
-P-value = 0.00076
-
-
-### \#13
-
-P-value = 0.0694
-
-
-### \#15
-
-P-value = 0.0068
 
 
 # Homework 13
