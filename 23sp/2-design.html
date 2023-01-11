@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-01-11" />
 
-<title>Introduction to Statistics</title>
+<title>Sampling Methods</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1654,7 +1654,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Introduction to Statistics</h1>
+<h1 class="title toc-ignore">Sampling Methods</h1>
 <h4 class="author">Yuanting Lu</h4>
 <h4 class="date">01/11/2023</h4>
 
@@ -1663,63 +1663,30 @@ div.tocify {
 
 <hr class="left">
 </hr>
-<div id="the-nature-of-statistics" class="section level3">
-<h3>The Nature of Statistics</h3>
-<p><strong>Statistics</strong> is the art and science of using
-mathematics to make data driven decisions, but it is not mathematics.
-Primarily, statistics is concerned about context (what the numbers
-reveal about a real situation), while mathematics is concerned with
-abstractions of the real world. Fundamentally, statisticians make
-statements about which they are pretty sure, while mathematicians make
-statements about which they are absolutely positively sure.</p>
-<p><strong>The Process of Statistics</strong></p>
-<ul>
-<li>Identify the research objective</li>
-<li>Collect the data</li>
-<li>Describe the data</li>
-<li>Perform inference</li>
-</ul>
-<p><strong><ex>Book Example</ex></strong> A cholesterol-lowering drug
-has just been developed and its efficacy needs to be determined,
-volunteers will be recruited and their cholesterol levels noted
-(p. 3).</p>
-<div class="indent">
-<p><span class="math inline">\(\ominus\)</span> Key terms:
-<strong><key>control group</key></strong>,
-<strong><key>placebo</key></strong>, <strong><key>double-blind
-experiment</key></strong> (pp. 3-4).</p>
-<p><span class="math inline">\(\ominus\)</span> Useful <em>R</em>
-command: <cc>sample(1:20, 1)</cc>.</p>
+<div id="simple-random-sampling" class="section level3">
+<h3>Simple random sampling</h3>
+<p>A sample of <span class="math inline">\(k\)</span> members of a
+population is said to be a random sample, sometimes called a <key>simple
+random sample</key>, if the members are chosen in such a way that all
+possible choices of the <span class="math inline">\(k\)</span> members
+are equally likely.</p>
+<p><strong><ex>Classroom Activity</ex></strong> Draw a simple random
+sample in the <a href="https://shiny.yuanting.lu/samplingmethods" target="_blank">demo app</a>.<br><br><br></p>
 </div>
-<p><br></p>
-<p><strong><ex>Classroom Activity</ex></strong> A quiz has 10 true or
-false questions. Do you think this is a good way to assess student’s
-leanring outcome? (e.g., How likely can a student pass the quiz by
-guessing all the answers?)</p>
-<center>
-Click <a href="https://shiny.yuanting.lu/tfquiz" target="_blank">here</a> to take the quiz.
-</center>
-<div class="indent">
-<p><span class="math inline">\(\ominus\)</span> Key terms:
-<strong><key>Descriptive statistics</key></strong>,
-<strong><key>inferential statistics</key></strong> (p. 4)</p>
+<div id="stratified-sampling" class="section level3">
+<h3>Stratified sampling</h3>
+<p>Divide the population into groups called <key>strata</key> and then
+take a proportionate number from each stratum.</p>
+<p><strong><ex>Classroom Activity</ex></strong> Draw a stratified sample
+in the <a href="https://shiny.yuanting.lu/samplingmethods" target="_blank">demo app</a>.<br><br><br></p>
 </div>
-<p><br></p>
+<div id="systematic-sampling" class="section level3">
+<h3>Systematic sampling</h3>
+<p>Randomly select a starting point and take every nth piece of data
+from a listing of the population.</p>
+<p><ex>Example</ex> Sample every tenth person in the <code>Credit</code>
+file until we get a sample of 30 people.</p>
 </div>
-<div id="population-and-sample" class="section level3">
-<h3>Population and Sample</h3>
-<p><strong><ex>Example</ex></strong> Suppose we have a population of 400
-people in a community and we want to sample 30 of them to estimate the
-average credit limit within this community.</p>
-<div class="indent">
-<p><span class="math inline">\(\ominus\)</span> Key terms:
-<strong><key>Population</key></strong>,
-<strong><key>Sample</key></strong> (p. 5), <strong><key>random
-sample</key></strong> (p. 6)</p>
-</div>
-<!-- ### Online R Editor -->
-<!-- <div class="rdrr">This is for quick demonstration only. Your work in here can **NOT** be saved.</div> -->
-<!-- <iframe width='100%' height='2200' src='https://rdrr.io/snippets/embed/?code=' frameborder='0'></iframe> -->
 <script type="text/javascript">
 $(document).ready(function() {
   $('.footnotes ol').appendTo('#endnotes');
