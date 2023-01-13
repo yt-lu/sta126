@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2023-01-12" />
+<meta name="date" content="2023-01-13" />
 
 <title>Sampling Methods</title>
 
@@ -1733,7 +1733,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Sampling Methods</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">01/12/2023</h4>
+<h4 class="date">01/13/2023</h4>
 
 </div>
 
@@ -1741,42 +1741,42 @@ div.tocify {
 <hr class="left">
 </hr>
 <p>In order to demonstrate the various sampling methods in this section,
-we will use a simulated data set<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> that contains the information of a large
-number of credit card holders. Load the dataset using the following
+we will use a simulated data set that contains the information of a
+large number of credit card holders<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Load the dataset using the following
 command.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>credit <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;https://albums.yuanting.lu/sta126/data/credit.csv&#39;</span>)</span></code></pre></div>
 <div id="simple-random-sampling" class="section level3">
 <h3>Simple random sampling</h3>
 <p>A sample of <span class="math inline">\(k\)</span> members of a
-population is said to be a random sample, sometimes called a <key>simple
-random sample</key>, if the members are chosen in such a way that all
-possible choices of the <span class="math inline">\(k\)</span> members
-are equally likely.</p>
+population is said to be a random sample, sometimes called a
+<strong><key>simple random sample</key></strong>, if the members are
+chosen in such a way that all possible choices of the <span class="math inline">\(k\)</span> members are equally likely.</p>
 <p><strong><ex>Classroom Activity</ex></strong> Draw a simple random
-sample of size 12 in the <code>credit</code> data file.</p>
+sample of size 12 in the <dsn>credit</dsn> data file.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sample_a <span class="ot">&lt;-</span> credit[<span class="fu">sample</span>(<span class="dv">400</span>, <span class="dv">12</span>), ]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sample_a</span></code></pre></div>
 <pre><code>##      ID  Income Limit Rating Cards Age Education Gender Student Married Balance
-## 29   29 186.634 13414    949     2  41        14 Female      No     Yes    1809
-## 80   80  15.354  2101    171     2  65        14   Male      No      No       0
-## 320 320  27.590  2586    229     5  54        16   Male      No     Yes       0
+## 278 278  41.532  5000    353     2  50        12   Male      No     Yes     531
+## 272 272  44.978  4866    347     1  30        10 Female      No      No     436
+## 103 103  68.713  7582    531     2  56        16   Male     Yes      No    1587
+## 41   41  34.950  3327    253     3  54        14 Female      No      No      50
+## 54   54  16.304  5466    413     4  66        10   Male      No     Yes     957
+## 352 352  61.620  5140    374     1  71         9   Male      No     Yes     302
+## 115 115  16.482  3326    268     4  41        15   Male      No      No     271
 ## 340 340 149.316 10278    707     1  80        16   Male      No      No    1107
-## 68   68  11.187  5099    380     4  69        16 Female      No      No     889
-## 153 153  41.419  2120    184     4  24        11 Female     Yes      No     156
-## 299 299  20.791  2672    204     1  70        18 Female      No      No       0
-## 225 225 121.709  7818    584     4  50         6   Male      No     Yes     701
-## 11   11  63.095  8117    589     4  30        14   Male      No     Yes    1407
-## 243 243  20.918  1233    128     3  47        18 Female     Yes     Yes      16
-## 52   52  39.705  3969    301     2  27        20   Male      No     Yes     211
-## 53   53  44.205  5441    394     1  32        12   Male      No     Yes     607</code></pre>
+## 284 284  49.927  6396    485     3  75        17 Female      No     Yes     890
+## 338 338  12.414   855    119     3  32        12   Male      No     Yes       0
+## 204 204  68.206  6784    499     5  40        16 Female     Yes      No    1411
+## 150 150  13.444   886    121     5  44        10   Male      No     Yes       0</code></pre>
 <p><br><br></p>
 </div>
 <div id="stratified-sampling" class="section level3">
 <h3>Stratified sampling</h3>
-<p>Divide the population into groups called <key>strata</key> and then
-take a proportionate number from each stratum.</p>
+<p>Divide the population into groups called
+<strong><key>strata</key></strong> and then take a proportionate number
+from each stratum.</p>
 <p><strong><ex>Classroom Activity</ex></strong> Draw a stratified sample
-of size 12 from the <code>credit</code> data file based on the levels of
+of size 12 from the <dsn>credit</dsn> data file based on the levels of
 education?</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>college <span class="ot">&lt;-</span> credit[<span class="fu">which</span>(credit<span class="sc">$</span>Education <span class="sc">&gt;</span> <span class="dv">12</span> <span class="sc">&amp;</span> credit<span class="sc">$</span>Education <span class="sc">&lt;=</span> <span class="dv">16</span>), ]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>highschool <span class="ot">&lt;-</span> credit[<span class="fu">which</span>(credit<span class="sc">$</span>Education <span class="sc">&lt;=</span> <span class="dv">12</span>), ]</span>
@@ -1789,18 +1789,18 @@ education?</p>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sample_b <span class="ot">&lt;-</span> <span class="fu">rbind</span>(co, hi, gr)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>sample_b</span></code></pre></div>
 <pre><code>##      ID  Income Limit Rating Cards Age Education Gender Student Married Balance
-## 367 367  61.069  7871    564     3  56        14   Male      No     Yes    1264
-## 258 258  15.629  2493    186     1  60        14   Male      No     Yes       0
-## 184 184  80.861  4090    335     3  29        15 Female      No     Yes       0
-## 227 227  59.879  6906    527     6  78        15 Female      No      No    1032
-## 357 357  34.480  6090    442     3  36        14   Male      No      No     962
-## 133 133  23.283  5443    407     4  49        13   Male      No     Yes     912
-## 161 161  12.238  4865    381     5  67        11 Female      No      No     836
-## 34   34  31.367  1829    162     4  30        10   Male      No     Yes       0
-## 174 174  14.887  4745    339     3  58        12   Male      No     Yes     724
-## 55   55  15.333  1499    138     2  47         9 Female      No     Yes       0
-## 214 214  39.422  5245    383     2  44        19   Male      No      No     637
-## 324 324 182.728 13913    982     4  98        17   Male      No     Yes    1999</code></pre>
+## 109 109 107.986  6033    449     4  64        14   Male      No     Yes     227
+## 376 376  20.974  5673    413     5  44        16 Female      No     Yes    1000
+## 374 374  55.412  5354    383     2  37        16 Female     Yes     Yes    1003
+## 74   74  23.989  4523    338     4  31        15   Male      No      No     601
+## 335 335  24.230  4756    351     2  64        15 Female      No     Yes     594
+## 276 276 163.329  8732    636     3  50        14   Male      No     Yes     529
+## 114 114  69.251  6386    474     4  30        12 Female      No     Yes     768
+## 141 141  39.831  6045    459     3  32        12 Female     Yes     Yes    1425
+## 364 364  64.173  6127    433     1  80        10   Male      No     Yes     578
+## 170 170  27.330  6179    459     4  36        12 Female      No     Yes    1099
+## 324 324 182.728 13913    982     4  98        17   Male      No     Yes    1999
+## 106 106  12.031  3182    259     2  58        18 Female      No     Yes     210</code></pre>
 <p><br></p>
 <p><strong><ex>Practice</ex></strong> Can you do a stratified sampling
 based on age groups? <br><br></p>
@@ -1809,8 +1809,8 @@ based on age groups? <br><br></p>
 <h3>Systematic sampling</h3>
 <p>Randomly select a starting point and take every nth piece of data
 from a listing of the population.</p>
-<p><ex>Example</ex> Sample every 34th person in the <code>Credit</code>
-file until we get a total of 12 people.</p>
+<p><strong><ex>Example</ex></strong> Sample every 34th person in the
+<dsn>credit</dsn> data file until we get a total of 12 people.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sample_c <span class="ot">&lt;-</span> credit[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">400</span>, <span class="dv">34</span>), ]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sample_c</span></code></pre></div>
 <pre><code>##      ID Income Limit Rating Cards Age Education Gender Student Married Balance
