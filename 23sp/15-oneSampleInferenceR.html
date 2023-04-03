@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-04-03" />
 
-<title>Hypothesis Test for a Population Mean</title>
+<title>One-Sample Inference with R</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1303,6 +1303,83 @@ window.buildTabsets = function(tocID) {
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -1655,7 +1732,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Hypothesis Test for a Population Mean</h1>
+<h1 class="title toc-ignore">One-Sample Inference with R</h1>
 <h4 class="author">Yuanting Lu</h4>
 <h4 class="date">04/03/2023</h4>
 
@@ -1664,72 +1741,95 @@ div.tocify {
 
 <hr class="left">
 </hr>
-<div class="framed">
+<div id="inference-about-p" class="section level3">
+<h3>Inference about <span class="math inline">\(p\)</span></h3>
+<ol style="list-style-type: decimal">
+<li><p>Confidence intervals.</p>
 <ul>
-<li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span></p></li>
-<li><p><span class="math inline">\(H_1: \mu\ne \mu_0,
-\mu&gt;\mu_0,\)</span> or <span class="math inline">\(\mu &lt;
-\mu_0\)</span></p></li>
-<li><p>Test statistic: <span class="math inline">\(t\)</span></p></li>
-<li><p>P-value.</p></li>
+<li>Fill the variable <code>x</code> as the number of success in the
+sample.</li>
+<li>Fill the variable <code>n</code> as the sample size.</li>
+<li>Fill the confidence level <code>conf.level =</code>. The default
+value is 0.95.</li>
 </ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div></li>
+<li><p>Hypothesis tests.</p>
+<p>One option is the <code>prop.test</code> command.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<p>Another option is the <code>binom.test</code> command.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<p>In either one of the two commands above,</p>
+<ul>
+<li>Fill <code>p =</code> as stated in <span class="math inline">\(H_0\)</span>. The default value is 0.5.</li>
+<li>Choose one of the three options for the <code>alternative =</code>
+based on <span class="math inline">\(H_1\)</span>.</li>
+</ul></li>
+</ol>
+<p><strong><ex>Book Problem Set 8.7 #4</ex></strong> A poll of 1200
+voters in 1980 gave Ronald Reagan 57 percent of the vote.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Test if the sample data supports the claim that majority of
+voters favored Reagan at the time of the poll.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">1200</span> <span class="sc">*</span> <span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">1200</span> <span class="sc">*</span> <span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div></li>
+<li><p>Construct a 99% confidence interval for all voter who favored
+Reagan at the time of the poll.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">1200</span> <span class="sc">*</span> <span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="at">conf.level =</span> <span class="fl">0.99</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">1200</span> <span class="sc">*</span> <span class="fl">0.57</span>, <span class="dv">1200</span>, <span class="at">conf.level =</span> <span class="fl">0.99</span>)</span></code></pre></div></li>
+</ol>
+<div class="more">
+<p>Comparing with the confidence interval that you learned earlier, you
+will see the results of confidence intervals are not all the same. Here
+is <a href="https://towardsdatascience.com/five-confidence-intervals-for-proportions-that-you-should-know-about-7ff5484c024f" target="_blank">a nice review article</a> that explains why.</p>
 </div>
-<p><br></p>
-<!--
-### With Known $\sigma$
-
-**<ex>Book Example 9.1</ex>** Suppose that if a signal of intensity $\mu$ is emitted from a particular star, then the value received at an observatory on earth is a normal random variable with mean $\mu$ and standard deviation 4. In other words, the value of the
-signal emitted is altered by random noise, which is normally distributed with
-mean 0 and standard deviation 4. It is suspected that the intensity of the
-signal is equal to 10. Test whether this hypothesis is plausible if the same
-signal is independently received 20 times and the average of the 20 values
-received is 11.6. Use the 5 percent level of significance.
-
-<br><br><br><br>
-
-<br><br><br><br>
-
-<br><br><br><br>
-
-<br><br><br><br>
-
-**<ex>Book Example 9.3</ex>**  In Example 9.1, assuming a 0.05 significance level, what is the probability that the null hypothesis (that the signal intensity is equal to 10) will not be
-rejected when the actual signal value is 9.2 (i.e., the probability of making a type II error)?
-
-<br><br><br><br>
-
-<br><br><br><br>
-
-<br><br><br><br>
-
-<br><br><br><br>
-
--->
-<div id="with-unknown-sigma" class="section level3">
-<h3>With Unknown <span class="math inline">\(\sigma\)</span></h3>
-<p><strong><ex>Book Example 9.6</ex></strong> Historical data indicate
-that the mean acidity (pH) level of rain in a certain industrial region
-in West Virginia is 5.2. To see whether there has been any recent change
-in this value, the acidity levels of 12 rainstorms over the past year
-have been measured, with the following results: <span class="math display">\[6.1, 5.4, 4.8, 5.8, 6.6, 5.3, 6.1, 4.4, 3.9, 6.8,
-6.5, 6.3\]</span> Are these data strong enough, at the 5 percent level
-of significance, for us to conclude that the acidity of the rain has
-changed from its historical value?</p>
-<p><br><br><br><br></p>
-<p><br><br><br><br></p>
-<p><br><br><br><br></p>
-<p><br><br><br><br></p>
-<p><strong><ex>Book Example 9.7</ex></strong> The manufacturer of a new
-fiberglass tire claims that the average life of a set of its tires is at
-least 50,000 miles. To verify this claim, a sample of 8 sets of tires
-was chosen, and the tires subsequently were tested by a consumer agency.
-If the resulting values of the sample mean and sample variance were,
-respectively, 47.2 and 3.1 (in 1000 miles), test the manufacturer’s
-claim.</p>
-<p><br><br><br><br></p>
-<p><br><br><br><br></p>
-<p><br><br><br><br></p>
-<p><br><br><br><br></p>
+</div>
+<div id="inference-about-mu" class="section level3">
+<h3>Inference about <span class="math inline">\(\mu\)</span></h3>
+<ol style="list-style-type: decimal">
+<li>Define the variable <code>x</code> as the raw data.</li>
+<li>For confidence intervals:
+<ul>
+<li>Fill in the confidence level <code>conf.level =</code>. The default
+is 0.95.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(...)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div></li>
+<li>For hypothesis test:
+<ul>
+<li>Fill in the value of <code>mu =</code> as stated in the null
+hypothesis <span class="math inline">\(H_0\)</span>.</li>
+<li>Select one of the three options for <code>alternative =</code> based
+on <span class="math inline">\(H_1\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(...) <span class="co"># raw data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">mu =</span> , <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>) </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">mu =</span> , <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">mu =</span> , <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div></li>
+</ol>
+<p><strong><ex>Book Problem Set 8.6 #2</ex></strong> The manager of a
+shipping department of a mail-order operation located in New York has
+been receiving complaints about the length of time it takes for
+customers in California to receive their orders. To learn more about
+this potential problem, the manager chose a random sample of 12 orders
+and then checked to see how many days it took to receive each of these
+orders. The resulting data were <span class="math display">\[15, 20, 10,
+11, 7, 12, 9, 14, 12, 8, 13, 16.\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Test if the sample supports the claim that, on average, it takes
+more than 10 days for customers in California to receive their
+orders.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">16</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">mu =</span> <span class="dv">10</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div></li>
+<li><p>Construct a 95% confidence interval for the true average length
+of time for customers in California to receive their orders.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">16</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div></li>
+</ol>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
 <h3 class="unnumbered"></h3>
