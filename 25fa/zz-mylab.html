@@ -1723,13 +1723,6 @@ font-size: 0.95em;
 
 <hr class="left">
 </hr>
-<div id="install-an-r-package" class="section level3">
-<h3>Install an R Package</h3>
-<p>Type the following command in your R console to install the package
-that can read Excel files. You only have to do this once. Skip this step
-if you have already installed the package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
-</div>
 <div id="download-datasets" class="section level3">
 <h3>Download Datasets</h3>
 <p>Follow the steps to download a dataset as an Excel file. Rename the
@@ -1753,13 +1746,24 @@ replace <code>020201.csv</code> by the correct file name.</p>
 <ul>
 <li>Mac version:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;/Users/your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">read.csv</span>(<span class="st">&quot;/Users/your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <ul>
 <li>Windows version:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/Your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/Your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>))</span></code></pre></div></li>
 </ul>
 <!--
+
+
+### Install an R Package
+
+Type the following command in your R console to install the package that can read Excel files. You only have to do this once. Skip this step if you have already installed the package.  
+
+
+```r
+install.packages("readxl")
+```
+
     - Mac version: 
 
     
