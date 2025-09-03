@@ -33,7 +33,7 @@ ogive <- function(x, breaks = NULL, right = TRUE, pch = 1, col = 'black', xlab =
   freq <- h$counts
   yvalues <- cumsum(freq)
   xvalues <- h$breaks[-1]
-  plot(xvalues, yvalues, type = 'b', col = col, ylim = c(0, max(cum_freq)),
+  plot(xvalues, yvalues, type = 'b', col = col, ylim = c(0, max(yvalues)),
        xlab = xlab, ylab = ylab,
        main = main, ...)
 }
