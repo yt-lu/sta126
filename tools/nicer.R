@@ -21,7 +21,9 @@ donut <- function (x, labels = names(x), main = NULL, radius = 0.3, col = rainbo
 # Frequency Polygon
 freqpoly <- function (x, breaks = NULL, right = FALSE, pch = 1, col = 'black', xlab = NULL, ylab = NULL, main = NULL, ...){
   h <- hist(x, breaks = breaks, plot = FALSE, right = right)
-  plot(h$mids, h$counts, type = 'b', pch = pch, col = col, xlab = xlab, ylab = ylab, main = main, ...)
+  width <- h$mids[2] - h$mids[1]
+  plot(c(min(h$mids) - width, h$mids, max(h$mids) + width), c(0, h$counts, 0), 
+       type = 'b', pch = pch, col = col, xlab = xlab, ylab = ylab, main = main, ...)
 }
 
 # Lollipop 
