@@ -26,6 +26,18 @@ freqpoly <- function (x, breaks = NULL, right = FALSE, pch = 1, col = 'black', x
        type = 'b', pch = pch, col = col, xlab = xlab, ylab = ylab, main = main, ...)
 }
 
+# Ogive
+
+ogive <- function(x, breaks = NULL, right = TRUE, pch = 1, col = 'black', xlab = NULL, ylab = NULL, main = NULL, ...){
+  h <- hist(x, breaks = breaks,right = right, plot = FALSE)
+  freq <- h$counts
+  yvalues <- cumsum(freq)
+  xvalues <- h$breaks[-1]
+  plot(xvalues, yvalues, type = 'b', col = col, ylim = c(0, max(cum_freq)),
+       xlab = xlab, ylab = ylab,
+       main = main, ...)
+}
+
 # Lollipop 
 lollipop <- function (x, cex = 1.5, lwd = 1, dcol = 'black', bcol = 'black',
                       ylab = "Frequency", main = NULL, ...){
