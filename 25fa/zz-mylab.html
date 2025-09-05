@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2025-08-29" />
+<meta name="date" content="2025-09-04" />
 
 <title>Working With Pearson’s MyLab Datasets</title>
 
@@ -1716,7 +1716,7 @@ font-size: 0.95em;
 
 <h1 class="title toc-ignore">Working With Pearson’s MyLab Datasets</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">08/29/2025</h4>
+<h4 class="date">09/04/2025</h4>
 
 </div>
 
@@ -1737,20 +1737,24 @@ you may rename the file as <code>020201.xlsx</code>.</p>
 </div>
 <div id="load-datasets-into-r" class="section level3">
 <h3>Load Datasets into R</h3>
-<ul>
-<li><p>For datasets that only have one column, use the following
-commands to access the data. Be sure to (1) replace
+<p>Use the following commands to load the data. Be sure to (1) replace
 <code>your-user-name</code> with the actual user name on your laptop,
-(2) replace <code>salary</code> by a reasonable variable name, and (3)
-replace <code>020201.csv</code> by the correct file name.</p>
+(2) replace <code>020201.csv</code> by the correct file name.</p>
 <ul>
-<li>Mac version:</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">read.csv</span>(<span class="st">&quot;/Users/your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<li><p>Mac version:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;/Users/your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code></pre></div></li>
+<li><p>Windows version:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/Your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <ul>
-<li>Windows version:</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/Your-user-name/Downloads/020201.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>))</span></code></pre></div></li>
+<li><p>For dataset that has a single column, provide a meaningful name
+to the variable, e.g., salary. Then use <code>df$salary</code> to access
+the data.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;salary&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>df<span class="sc">$</span>salary</span></code></pre></div></li>
+<li><p>For dataset that has multiple columns, e.g., height and weight.
+Then use <code>df$height</code> and <code>df$weight</code> to access the
+height and weight data, respectively.</p></li>
+</ul></li>
 </ul>
 <!--
 
