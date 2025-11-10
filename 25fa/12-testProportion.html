@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2025-11-07" />
+<meta name="date" content="2025-11-10" />
 
 <title>Hypothesis Test for a Population Proportion</title>
 
@@ -1711,7 +1711,7 @@ font-size: 0.95em;
 <h1 class="title toc-ignore">Hypothesis Test for a Population
 Proportion</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">11/07/2025</h4>
+<h4 class="date">11/10/2025</h4>
 
 </div>
 
@@ -1882,7 +1882,7 @@ television.</p>
 distribution of <span class="math inline">\(\hat p\)</span>), in which
 <span class="math inline">\(\scriptsize E[\hat p]=p=0.5\)</span> and
 <span class="math inline">\(\scriptsize SD(\hat
-p)=\sqrt{p(1-p)/n}=\sqrt{0.5(1-0.5)/920}\)</span>, with <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
+p)=\sqrt{p(1-p)/n}=\sqrt{0.5(1-0.5)/920}\)</span>, with <a href="https://albums.yuanting.lu/sta126/25fa/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">477.5</span> <span class="sc">/</span> <span class="dv">920</span>, <span class="fl">0.5</span>, <span class="fu">sqrt</span>(<span class="fl">0.5</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">920</span>))</span></code></pre></div>
 <pre><code>## [1] 0.1242673</code></pre>
 <p>If true proportion of people who are concerned about the lack of
