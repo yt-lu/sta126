@@ -1676,78 +1676,66 @@ interval, and so on.
 </div>
 <div id="interval-estimator" class="section level3">
 <h3>Interval Estimator</h3>
-<div id="with-known-sigma" class="section level4">
-<h4>With Known <span class="math inline">\(\sigma\)</span></h4>
+<!--
+#### With Known $\sigma$
+
 <div class="framed">
-<p>If the population standard deviation, <span class="math inline">\(\sigma\)</span>, is known, a confidence interval
-for a population mean <span class="math inline">\(\mu\)</span> is <span class="math display">\[\left(\overline{x} -
-z_{\alpha}\dfrac{\sigma}{\sqrt n}, \quad\overline{x} +
-z_{\alpha}\dfrac{\sigma}{\sqrt n}\right).\]</span></p>
+If the population standard deviation, $\sigma$, is known, a confidence interval for a population mean $\mu$ is
+\[\left(\overline{x} - z_{\alpha}\dfrac{\sigma}{\sqrt n}, \quad\overline{x} + z_{\alpha}\dfrac{\sigma}{\sqrt n}\right).\]
 </div>
-<p><br></p>
-<p><strong><ex>Ross 8.5 and 8.6</ex></strong> Suppose that if a signal
-having intensity <span class="math inline">\(\mu\)</span> originates at
-location A, then the intensity recorded at location B is normally
-distributed with mean <span class="math inline">\(\mu\)</span> and
-standard deviation 3. That is, due to “noise,” the intensity recorded
-typically differs from the actual intensity of the signal. To reduce the
-error, the same signal is independently recorded 10 times. If the
-successive recorded values are <span class="math display">\[17, 21, 20,
-18, 19, 22, 20, 21, 16, 19.\]</span></p>
-<ol style="list-style-type: lower-alpha">
-<li>Construct a 90% confidence interval for <span class="math inline">\(\mu\)</span>, the actual intensity.</li>
-</ol>
+
+<br>
+
+**<ex>Ross 8.5 and 8.6</ex>** Suppose that if a signal having intensity $\mu$ originates at location A, then the intensity recorded at location B is normally distributed with mean $\mu$ and
+standard deviation 3. That is, due to “noise,” the intensity recorded typically differs
+from the actual intensity of the signal. To reduce the error, the same signal is
+independently recorded 10 times. If the successive recorded values are
+\[17, 21, 20, 18, 19, 22, 20, 21, 16, 19.\]
+
+(a) Construct a 90% confidence interval for $\mu$, the actual intensity.
+
 <div class="shy">
-<ul>
-<li>Plug in the following numbers to the formula:
-<ul>
-<li><span class="math inline">\(\overline{x}=19.3,
-\sigma=3\)</span>.</li>
-<li><span class="math inline">\(z_{0.05}=1.645\)</span>
-<code>qnorm(0.95)</code></li>
-</ul></li>
-<li>We are 90% confident that the true intensity of the original signal
-is between 17.74 and 20.86.</li>
-</ul>
+
+- Plug in the following numbers to the formula: 
+  - $\overline{x}=19.3, \sigma=3$. 
+  - $z_{0.05}=1.645$ `qnorm(0.95)`
+
+- We are 90% confident that the true intensity of the original signal is between 17.74 and 20.86.
+
 </div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Construct a 95% confidence interval for <span class="math inline">\(\mu\)</span>, the actual intensity.</li>
-</ol>
+
+(b) Construct a 95% confidence interval for $\mu$, the actual intensity.
+
 <div class="shy">
-<ul>
-<li><p>Same formula as in (a), except this time we use <span class="math inline">\(z_{0.025}=1.96\)</span>
-<code>qnorm(0.975)</code></p></li>
-<li><p>We are 95% confident that the true intensity of the original
-signal is between 17.44 and 21.16.</p></li>
-</ul>
+
+- Same formula as in (a), except this time we use $z_{0.025}=1.96$ `qnorm(0.975)`
+
+- We are 95% confident that the true intensity of the original signal is between 17.44 and 21.16.
+
 </div>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Construct a 99% confidence interval for <span class="math inline">\(\mu\)</span>, the actual intensity.</li>
-</ol>
+
+(c) Construct a 99% confidence interval for $\mu$, the actual intensity.
+
 <div class="shy">
-<ul>
-<li><p>Same formula as in (a) and (b), except this time we use <span class="math inline">\(z_{0.005}=2.576\)</span>
-<code>qnorm(0.995)</code></p></li>
-<li><p>We are 99% confident that the true intensity of the original
-signal is between 16.86 and 21.74.</p></li>
-</ul>
+
+- Same formula as in (a) and (b), except this time we use $z_{0.005}=2.576$ `qnorm(0.995)`
+
+- We are 99% confident that the true intensity of the original signal is between 16.86 and 21.74.
+
 </div>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Compare the three intervals, which one has the smallest margin of
-error?</li>
-</ol>
+
+(d) Compare the three intervals, which one has the smallest margin of error?
+
 <div class="shy">
-<ul>
-<li>The margin of error for the three intervals are 1.56, 1.86, and
-2.44, respectively. So the 90% interval has the smallest margin of error
-among the three (i.e., the most accurate).However, it also has the
-lowest confidence level among the three. So, this shows the trade off
-between accuracy and confidence.</li>
-</ul>
+
+- The margin of error for the three intervals are 1.56, 1.86, and 2.44, respectively. So the 90% interval has the smallest margin of error among the three (i.e., the most accurate).However, it also has the lowest confidence level among the three. So, this shows the trade off between accuracy and confidence. 
+
 </div>
-</div>
-<div id="with-unknown-sigma" class="section level4">
-<h4>With Unknown <span class="math inline">\(\sigma\)</span></h4>
+
+
+#### With Unknown $\sigma$
+
+-->
 <div class="framed">
 <p>If the population standard deviation, <span class="math inline">\(\sigma\)</span>, is unknown, a confidence interval
 for a population mean <span class="math inline">\(\mu\)</span> is <span class="math display">\[\left(\overline{x} - t_{\alpha}\dfrac{s}{\sqrt
@@ -1850,7 +1838,6 @@ minus 1).</p></li>
 nursing mothers is between 2.55 ppm and 9.05 ppm. We lose accuracy as we
 increase the confidence level.</p></li>
 </ul>
-</div>
 </div>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
