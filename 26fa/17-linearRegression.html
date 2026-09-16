@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2026-09-14" />
+<meta name="date" content="2026-09-16" />
 
 <title>Linear Regression</title>
 
@@ -1711,7 +1711,7 @@ font-size: 0.95em;
 
 <h1 class="title toc-ignore">Linear Regression</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">09/14/2026</h4>
+<h4 class="date">09/16/2026</h4>
 
 </div>
 
@@ -1751,12 +1751,22 @@ one’s credit ratings and one’s age?<br><br><br><br></p>
 <div class="framed">
 <p><span class="math display">\[r = \dfrac{1}{n-1}\sum \left(\dfrac{x_i
 - \bar x}{s_x}\right)\left(\dfrac{y_i - \bar y}{s_y}\right)\]</span></p>
+<p><span class="math inline">\(x_i\)</span>: the x-value of the i-th
+data point<br> <span class="math inline">\(\bar x\)</span>: the mean of
+all x-values <br> <span class="math inline">\(s_x\)</span>: the standard
+deviation of all x-values <br> <span class="math inline">\(n\)</span>:
+sample size<br> <span class="math inline">\(\Sigma\)</span>: summation
+<br></p>
 </div>
 <p><br></p>
+<p><strong><ex>Example 5.</ex></strong> Calculate the linear correlation
+coefficient formula explained.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">38</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">91</span>, <span class="dv">86</span>, <span class="dv">95</span>, <span class="dv">89</span>)</span></code></pre></div>
 <p>Given the raw data in <span class="math inline">\(x\)</span> and
 <span class="math inline">\(y\)</span>, the <span class="math inline">\(R\)</span> command for the linear correlation
 coefficient is</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
 <p>Properties of the linear correlation coefficient <span class="math inline">\(r\)</span>:</p>
 <ul>
 <li><span class="math inline">\(-1\le r \le 1\)</span>.</li>
@@ -1769,7 +1779,7 @@ little to no linear correlation.</li>
 <li><span class="math inline">\(r\)</span> has no unit, i.e., it is a
 unitless measure of association.</li>
 </ul>
-<p><strong><ex>Example 5.</ex></strong> Find the linear correlation
+<p><strong><ex>Example 6.</ex></strong> Find the linear correlation
 coefficient in the first three examples. Which pair has the strongest
 linear correlation?</p>
 <p><br><br><br><br></p>
@@ -1785,11 +1795,11 @@ with two correlated variables. Check out some of the <a href="https://www.tylerv
 <p>Given the raw data <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the least-squares linear regression
 line, can be found by the <span class="math inline">\(R\)</span>
 command</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x)</span></code></pre></div>
-<p><strong><ex>Example 6.</ex></strong> Find the linear regression lines
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x)</span></code></pre></div>
+<p><strong><ex>Example 7.</ex></strong> Find the linear regression lines
 between credit limits and credit ratings. What is the expected limit for
 someone whoes credit rating is 900?</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">lm</span>(a<span class="sc">$</span>Limit <span class="sc">~</span> a<span class="sc">$</span>Rating)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">lm</span>(a<span class="sc">$</span>Limit <span class="sc">~</span> a<span class="sc">$</span>Rating)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = a$Limit ~ a$Rating)
@@ -1798,7 +1808,7 @@ someone whoes credit rating is 900?</p>
 ## (Intercept)     a$Rating  
 ##     -542.93        14.87</code></pre>
 <p><br></p>
-<p><strong><ex>Example 7.</ex></strong> One of the built-in datasets in
+<p><strong><ex>Example 8.</ex></strong> One of the built-in datasets in
 <span class="math inline">\(R\)</span> is <dsn>trees</dsn>.</p>
 <ul>
 <li>Type <code>trees</code> in the <span class="math inline">\(R\)</span> console to see the data.</li>
@@ -1822,9 +1832,9 @@ beyond its original range, assuming the observed trends will continue
 outside the initial range.</p>
 </div>
 <p><br></p>
-<p><strong><ex>Example 8.</ex></strong> Least-squares explained.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span></code></pre></div>
+<p><strong><ex>Example 9.</ex></strong> Least-squares explained.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span></code></pre></div>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
 <h3 class="unnumbered"></h3>
