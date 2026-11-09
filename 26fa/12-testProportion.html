@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yuanting Lu" />
 
-<meta name="date" content="2026-11-06" />
+<meta name="date" content="2026-11-09" />
 
 <title>Hypothesis Test for a Population Proportion</title>
 
@@ -1304,9 +1304,8 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -1317,7 +1316,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -1715,7 +1714,7 @@ font-size: 0.95em;
 <h1 class="title toc-ignore">Hypothesis Test for a Population
 Proportion</h1>
 <h4 class="author">Yuanting Lu</h4>
-<h4 class="date">11/06/2026</h4>
+<h4 class="date">11/09/2026</h4>
 
 </div>
 
@@ -1733,6 +1732,234 @@ specify that a population parameter, such as the population proportion,
 has a certain value. We must then decide whether this hypothesis is
 <strong>consistent with data obtained in a sample</strong>.</p>
 </blockquote>
+<div id="fair-deck-of-cards" class="section level3">
+<h3>Fair Deck of Cards?</h3>
+<p>Let’s consider three experiments with three decks of cards (52 cards
+per deck).</p>
+<ol style="list-style-type: decimal">
+<li><p>Load all three decks of cards.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>cards <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://albums.yuanting.lu/sta126/data/cards.csv&quot;</span>)</span></code></pre></div></li>
+<li><p>Repeat the command ten times to draw (with replacement) a sample
+of 10 cards from the first deck.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sample</span>(cards<span class="sc">$</span>deck1, <span class="dv">1</span>)</span></code></pre></div></li>
+<li><p>How many hearts do you get? What is the proportion of
+hearts?</p></li>
+<li><p>Do you think this is a fair deck?</p></li>
+<li><p>Repeat the process for the second deck of cards. What proportion
+of hearts do you get in a sample of 10 cards (with replacement)? Do you
+think it is a fair deck?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sample</span>(cards<span class="sc">$</span>deck2, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
+<li><p>How about the third deck of cards? Do you think it is a fair
+deck?</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sample</span>(cards<span class="sc">$</span>deck3, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
+<li><p>Finally, let’s reveal the three decks of cards. Did you get all
+the correct decisions earlier?</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">table</span>(cards<span class="sc">$</span>deck1)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">table</span>(cards<span class="sc">$</span>deck2)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">table</span>(cards<span class="sc">$</span>deck3)</span></code></pre></div></li>
+</ol>
+</div>
+<div id="concepts" class="section level3">
+<h3>Concepts</h3>
+<ul>
+<li><strong><key>Null hypothesis</key></strong>: the hypothesis to be
+tested, denoted by <span class="math inline">\(H_0\)</span>.</li>
+<li><strong><key>Alternative hypothesis</key></strong>: the hypothesis
+to be established, denoted by <span class="math inline">\(H_1\)</span>
+or <span class="math inline">\(H_a\)</span>.<br />
+</li>
+<li><strong><key>Test statistic</key></strong>: the <span class="math inline">\(z\)</span>-score of <span class="math inline">\(\widehat{p}\)</span>.</li>
+<li><strong><key>P-value</key></strong>: the (largest) probability of
+obtaining test results at least as extreme as the results actually
+observed, under the assumption that the null hypothesis is correct.</li>
+<li><strong><key>Level of significance, <span class="math inline">\(\alpha\)</span></key></strong>: the threshold used
+to determine what counts as statistically rare or unusual. Probabilities
+below <span class="math inline">\(\alpha\)</span> are considered as
+rare.</li>
+<li><strong><key>Type I error</key></strong>: reject a true null
+hypothesis.</li>
+<li><strong><key>Type II error</key></strong>: fail to reject a false
+null hypothesis.</li>
+</ul>
+</div>
+<div id="procedure-of-hypothesis-testing" class="section level3">
+<h3>Procedure of Hypothesis Testing</h3>
+<ol style="list-style-type: decimal">
+<li>Set up <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> in one of the three different ways,
+where <span class="math inline">\(p_0\)</span> is a given/indicated
+population parameter in the question
+<ul>
+<li><span class="math inline">\(H_0: p = p_0\)</span> and <span class="math inline">\(H_1: p \ne p_0\)</span> (two-sided test)</li>
+<li><span class="math inline">\(H_0: p = p_0\)</span> and <span class="math inline">\(H_1: p &gt; p_0\)</span> (one-sided test)</li>
+<li><span class="math inline">\(H_0: p = p_0\)</span> and <span class="math inline">\(H_1: p &lt; p_0\)</span> (one-sided test)</li>
+</ul></li>
+<li>Find the p-value using one of the two options.
+<ul>
+<li>Binomial distribution.</li>
+<li>Normal distribution with the assumptions that
+<ul>
+<li>Sample size is less than 5% of the population size.</li>
+<li>Sample is randomly chosen.</li>
+<li><span class="math inline">\(np_0(1-p_0)\ge 10\)</span>.</li>
+</ul></li>
+</ul></li>
+<li>Write a conclusion in the context of the question based on weather
+the evidence is rare to see.
+<ul>
+<li>Reject <span class="math inline">\(H_0\)</span> if p-value &lt;
+<span class="math inline">\(\alpha\)</span> (rare).</li>
+<li>Do not reject <span class="math inline">\(H_0\)</span> if p-value
+<span class="math inline">\(\ge \alpha\)</span> (not rare).</li>
+</ul></li>
+</ol>
+</div>
+<div id="two-sided-test" class="section level3">
+<h3>Two-Sided Test</h3>
+<div class="framed">
+<p><span class="math inline">\(H_0: p=p_0\)</span></p>
+<p><span class="math inline">\(H_1: p\ne p_0\)</span></p>
+</div>
+<p><br></p>
+<p><strong><ex>Example 1 (Ross 9.10)</ex></strong> Historical data
+indicate that 4% of the components produced at a certain manufacturing
+facility are defective. A particularly acrimonious labor dispute has
+recently been concluded, and management is curious about whether it will
+result in any change in this figure of 4 percent. If a random sample of
+500 items indicated 16 defectives (3.2%), is this significant evidence,
+at the <span class="math inline">\(\alpha=0.05\)</span> level of
+significance, to conclude that a change has occurred?</p>
+<p>Let <span class="math inline">\(p\)</span> be the true proportion of
+defective components.</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0.04\)</span></li>
+<li><span class="math inline">\(H_1: p \ne 0.04\)</span></li>
+<li>P-value:
+<ul>
+<li><p>Based on the binomial distribution (<span class="math inline">\(n=500\)</span> and <span class="math inline">\(p=0.04\)</span>):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pbinom</span>(<span class="dv">16</span>, <span class="dv">500</span>, <span class="fl">0.04</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4316072</code></pre>
+<p>If the true proportion of defective components was 0.04, the
+probability of getting 16 <strong>or fewer</strong> defectives, or 24
+<strong>or more</strong> defectives in a sample of 500 units is about
+0.432.</p></li>
+<li><p>Based on the normal distribution (i.e., the sampling distribution
+of <span class="math inline">\(\widehat p\)</span>), in which <span class="math inline">\(\scriptsize E[\widehat{p}]=p=0.04\)</span> and
+<span class="math inline">\(\scriptsize SD(\widehat
+p)=\sqrt{p(1-p)/n}=\sqrt{0.04(1-0.04)/500}\)</span>.</p>
+<p>Historically, we first convert <span class="math inline">\(\widehat{p}\)</span> to a <span class="math inline">\(z\)</span>-score and use the standard normal
+distribution table to find the p-value.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>z <span class="ot">&lt;-</span> (<span class="dv">16</span> <span class="sc">/</span> <span class="dv">500</span> <span class="sc">-</span> <span class="fl">0.04</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fl">0.04</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.04</span>) <span class="sc">/</span> <span class="dv">500</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(z)</span></code></pre></div>
+<pre><code>## [1] 0.3613104</code></pre>
+<p>With technology,</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="dv">16</span> <span class="sc">/</span> <span class="dv">500</span>, <span class="fl">0.04</span>, <span class="fu">sqrt</span>(<span class="fl">0.04</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.04</span>) <span class="sc">/</span> <span class="dv">500</span>))</span></code></pre></div>
+<pre><code>## [1] 0.3613104</code></pre>
+<p>If the true proportion of defective components was 0.04, the
+probability of getting 16 <strong>or fewer</strong> defectives, or 24
+<strong>or more</strong> defectives in a sample of 500 units is about
+0.361.</p></li>
+</ul></li>
+<li>Conclusion: Based on a significance level of 0.05, the p-value is
+not small, meaning the data we observed is not rare. Therefore, we do
+not reject the null hypothesis, meaning there is not enough evidence to
+claim that the true proportion of defective components is different from
+0.04.</li>
+</ul>
+<p><br></p>
+<div class="more">
+<p>The difference between the p-values found by the binomial
+distribution and the normal distribution can be addressed by continuous
+correction of the normal distribution.</p>
+</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fl">16.5</span> <span class="sc">/</span> <span class="dv">500</span>, <span class="fl">0.04</span>, <span class="fu">sqrt</span>(<span class="fl">0.04</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.04</span>) <span class="sc">/</span> <span class="dv">500</span>))</span></code></pre></div>
+<pre><code>## [1] 0.4244284</code></pre>
+<p><br></p>
+<p><strong><ex>Example 2.</ex></strong> If we randomly draw (with
+replacement) 20 cards from a deck of standard cards, and observe 3 out
+of 20 are hearts, then can we conclude that this is not a fair deck of
+cards?</p>
+<p>Let <span class="math inline">\(p\)</span> denote the true proportion
+of red cards.</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0.25\)</span></li>
+<li><span class="math inline">\(H_1: p \ne 0.25\)</span></li>
+<li>P-value:
+<ul>
+<li><p>Based on the binomial distribution (<span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.25\)</span>):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">20</span>, <span class="fl">0.25</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4503121</code></pre></li>
+</ul></li>
+</ul>
+<p>If the cards were fair, the probability of getting 3 <strong>or
+fewer</strong> red cards, or 17 <strong>or more</strong> hearts in a
+sample of 20 cards is about 0.45.</p>
+<ul>
+<li>Conclusion: Based on a significance level of 0.05, the p-value is
+not small, meaning it is likely to get 3 or fewer red cards in a sample
+of 10 cards drawing from a fair deck of cards. Therefore, we do not have
+sufficient evidence to show that this is not a fair deck of cards.</li>
+</ul>
+<div class="framed">
+<p>Did you say we believe the deck of cards is fair? Do not reject <span class="math inline">\(H_0\)</span> does NOT mean accept <span class="math inline">\(H_0\)</span>. It only means the population
+proportion assumed in the null hypothesis is merely one of many
+plausible population proportions.</p>
+</div>
+<p><br></p>
+</div>
+<div id="one-sided-tests" class="section level3">
+<h3>One-Sided Tests</h3>
+<div class="framed">
+<p><span class="math inline">\(H_0: p=p_0\)</span></p>
+<p><span class="math inline">\(H_1: p&gt; p_0\)</span> or <span class="math inline">\(p&lt;p_0\)</span></p>
+</div>
+<p><br></p>
+<p><strong><ex>Example 3 (Ross 9.8)</ex></strong> A noted educator
+claims that over half the adult U.S. population is concerned about the
+lack of educational programs shown on television. To gather data about
+this issue, a national polling service randomly chose and questioned 920
+individuals. If 478 (52%) of those surveyed stated that they are
+concerned about the lack of educational programs on television, does
+this prove the claim of the educator?</p>
+<p>Let <span class="math inline">\(p\)</span> be the true proportion of
+people who are concerned about the lack of educational programs on
+television.</p>
+<ul>
+<li><span class="math inline">\(H_0: p = 0.5\)</span></li>
+<li><span class="math inline">\(H_1: p &gt; 0.5\)</span></li>
+<li>P-value:
+<ul>
+<li><p>Based on the binomial distribution (<span class="math inline">\(n=920\)</span> and <span class="math inline">\(p=0.5\)</span>):</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">477</span>, <span class="dv">920</span>, <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1242603</code></pre></li>
+<li><p>Based on the normal approximation (i.e., the sampling
+distribution of <span class="math inline">\(\widehat p\)</span>), in
+which <span class="math inline">\(\scriptsize E[\widehat
+p]=p=0.5\)</span> and <span class="math inline">\(\scriptsize
+SD(\widehat p)=\sqrt{p(1-p)/n}=\sqrt{0.5(1-0.5)/920}\)</span>, with <a href="https://albums.yuanting.lu/sta126/25fa/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">477.5</span> <span class="sc">/</span> <span class="dv">920</span>, <span class="fl">0.5</span>, <span class="fu">sqrt</span>(<span class="fl">0.5</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">920</span>))</span></code></pre></div>
+<pre><code>## [1] 0.1242673</code></pre>
+<p>If true proportion of people who are concerned about the lack of
+educational programs on television was 0.5, the probability of seeing
+478 <strong>or more</strong> concerned people in a sample of 920 is
+about 0.124.</p></li>
+</ul></li>
+<li>Conclusion: Based on a significance level of 0.05, the p-value is
+not small, meaning the data we observed is not rare. Therefore, we do
+not reject the hypothesis that the true proportion of people who are
+concerned about the lack of educational programs on television is
+0.5.</li>
+</ul>
+<p><strong><ex>Example 4 (Ross 9.9)</ex></strong> A computer chip
+manufacturer claims that at most 2% of the chips it produces are
+defective. An electronics company, impressed by that claim, has
+purchased a large quantity of chips. To determine if the manufacturer’s
+claim is plausible, the company has decided to test a sample of 400 of
+these chips. If there are 13 defective chips (3.25 percent) among these
+400, does this disprove (at the 5 percent level of significance) the
+manufacturer’s claim?</p>
+<p><br><br><br><br><br></p>
+<p><br><br><br><br><br></p>
+</div>
 <div id="do-you-have-superpower" class="section level3">
 <h3>Do You Have Superpower</h3>
 <p><strong><ex>Activity</ex></strong> If we randomly draw a card from a
@@ -1851,184 +2078,6 @@ My Guess
 correct?<br></li>
 <li>Does any of the results support that you have the superpower?</li>
 </ol>
-</div>
-<div id="fair-cards" class="section level3">
-<h3>Fair Cards?</h3>
-<p>Let’s consider three experiments with three decks of cards (52 cards
-per deck).</p>
-<ol style="list-style-type: decimal">
-<li><p>Load all three decks of cards.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>cards <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://albums.yuanting.lu/sta126/data/cards.csv&quot;</span>)</span></code></pre></div></li>
-<li><p>Repeat the command ten times to draw (with replacement) a sample
-of 10 cards from the first deck.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sample</span>(cards<span class="sc">$</span>deck1, <span class="dv">1</span>)</span></code></pre></div></li>
-<li><p>How many red cards do you get? What is the proportion of red
-cards?</p></li>
-<li><p>Do you think this is a fair deck?</p></li>
-<li><p>Repeat the process for the second deck of cards. What proportion
-of red cards do you get in a sample of 10 cards (with replacement)? Do
-you think it is a fair deck?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sample</span>(cards<span class="sc">$</span>deck2, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
-<li><p>How about the third deck of cards? Do you think it is a fair
-deck?</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sample</span>(cards<span class="sc">$</span>deck3, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
-<li><p>Finally, let’s reveal the three decks of cards. Did you get all
-the correct decisions earlier?</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">table</span>(cards<span class="sc">$</span>deck1)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">table</span>(cards<span class="sc">$</span>deck2)</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">table</span>(cards<span class="sc">$</span>deck3)</span></code></pre></div></li>
-</ol>
-</div>
-<div id="concepts" class="section level3">
-<h3>Concepts</h3>
-<ul>
-<li><strong><key>Null hypothesis</key></strong>: the hypothesis to be
-tested, denoted by <span class="math inline">\(H_0\)</span>.</li>
-<li><strong><key>Alternative hypothesis</key></strong>: the hypothesis
-to be established, denoted by <span class="math inline">\(H_1\)</span>
-or <span class="math inline">\(H_a\)</span>.<br />
-</li>
-<li><strong><key>P-value</key></strong>: the (largest) probability of
-obtaining test results at least as extreme as the results actually
-observed, under the assumption that the null hypothesis is correct.</li>
-<li><strong><key>Type I error</key></strong>: Reject a true null
-hypothesis.</li>
-<li><strong><key>Type II error</key></strong>: Fail to reject a false
-null hypothesis.</li>
-</ul>
-</div>
-<div id="two-sided-test" class="section level3">
-<h3>Two-Sided Test</h3>
-<div class="framed">
-<p><span class="math inline">\(H_0: p=p_0\)</span></p>
-<p><span class="math inline">\(H_1: p\ne p_0\)</span></p>
-</div>
-<p><br></p>
-<p><strong><ex>Example 1.</ex></strong> If we randomly draw (with
-replacement) 10 cards from a deck of standard cards, and observe 3 out
-of 10 are red, then can we conclude that this is not a fair deck of
-cards?</p>
-<p>Let <span class="math inline">\(p\)</span> denote the true proportion
-of red cards.</p>
-<ul>
-<li><span class="math inline">\(H_0: p = 0.5\)</span></li>
-<li><span class="math inline">\(H_1: p \ne 0.5\)</span></li>
-<li>P-value:
-<ul>
-<li><p>Based on the binomial distribution (<span class="math inline">\(n=10\)</span> and <span class="math inline">\(p=0.5\)</span>):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span></code></pre></div>
-<pre><code>## [1] 0.34375</code></pre></li>
-<li><p>Based on the normal approximation (i.e., the sampling
-distribution of <span class="math inline">\(\widehat p\)</span>), in
-which <span class="math inline">\(\scriptsize E[\widehat
-p]=p=0.5\)</span> and <span class="math inline">\(\scriptsize
-SD(\widehat p)=\sqrt{p(1-p)/n}=\sqrt{0.5(1-0.5)/10}\)</span>, with <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fl">3.5</span> <span class="sc">/</span> <span class="dv">10</span>, <span class="fl">0.5</span>, <span class="fu">sqrt</span>(<span class="fl">0.5</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">10</span>))</span></code></pre></div>
-<pre><code>## [1] 0.3427817</code></pre>
-<p>If the cards were fair, the probability of getting 3 <strong>or
-fewer</strong> red cards, or 7 <strong>or more</strong> red cards in a
-sample of 10 cards is about 0.343.</p></li>
-</ul></li>
-<li>Conclusion: Based on a significance level of 0.05, the p-value is
-not small, meaning it is likely to get 3 or fewer red cards in a sample
-of 10 cards drawing from a fair deck of cards. Therefore, we do not have
-sufficient evidence to show that this is not a fair deck of cards.</li>
-</ul>
-<div class="framed">
-<p>Did you say we believe the deck of cards is fair? Do not reject <span class="math inline">\(H_0\)</span> does NOT mean accept <span class="math inline">\(H_0\)</span>. It only means the population
-proportion assumed in the null hypothesis is merely one of many
-plausible population proportions.</p>
-</div>
-<p><br></p>
-<p><strong><ex>Example 2 (Ross 9.10)</ex></strong> Historical data
-indicate that 4% of the components produced at a certain manufacturing
-facility are defective. A particularly acrimonious labor dispute has
-recently been concluded, and management is curious about whether it will
-result in any change in this figure of 4 percent. If a random sample of
-500 items indicated 16 defectives (3.2%), is this significant evidence,
-at the 5% level of significance, to conclude that a change has
-occurred?</p>
-<p>Let <span class="math inline">\(p\)</span> be the true proportion of
-defective components.</p>
-<ul>
-<li><span class="math inline">\(H_0: p = 0.04\)</span></li>
-<li><span class="math inline">\(H_1: p \ne 0.04\)</span></li>
-<li>P-value:
-<ul>
-<li><p>Based on the binomial distribution (<span class="math inline">\(n=500\)</span> and <span class="math inline">\(p=0.04\)</span>):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pbinom</span>(<span class="dv">16</span>, <span class="dv">500</span>, <span class="fl">0.04</span>)</span></code></pre></div>
-<pre><code>## [1] 0.4316072</code></pre></li>
-<li><p>Based on the normal approximation (i.e., the sampling
-distribution of <span class="math inline">\(\hat p\)</span>), in which
-<span class="math inline">\(\scriptsize E[\hat p]=p=0.04\)</span> and
-<span class="math inline">\(\scriptsize SD(\hat
-p)=\sqrt{p(1-p)/n}=\sqrt{0.04(1-0.04)/500}\)</span>, with <a href="https://albums.yuanting.lu/sta126/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fl">16.5</span> <span class="sc">/</span> <span class="dv">500</span>, <span class="fl">0.04</span>, <span class="fu">sqrt</span>(<span class="fl">0.04</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.04</span>) <span class="sc">/</span> <span class="dv">500</span>))</span></code></pre></div>
-<pre><code>## [1] 0.4244284</code></pre>
-<p>If the true proportion of defective components was 0.04, the
-probability of getting 16 <strong>or fewer</strong> defectives, or 24
-<strong>or more</strong> defectives in a sample of 500 units is about
-0.424.</p></li>
-</ul></li>
-<li>Conclusion: Based on a significance level of 0.05, the p-value is
-not small, meaning the data we observed is not rare. Therefore, we do
-not reject the hypothesis that the true proportion of defective
-components is 0.04.</li>
-</ul>
-</div>
-<div id="one-sided-tests" class="section level3">
-<h3>One-Sided Tests</h3>
-<div class="framed">
-<p><span class="math inline">\(H_0: p=p_0\)</span></p>
-<p><span class="math inline">\(H_1: p&gt; p_0\)</span> or <span class="math inline">\(p&lt;p_0\)</span></p>
-</div>
-<p><br></p>
-<p><strong><ex>Example 3 (Ross 9.8)</ex></strong> A noted educator
-claims that over half the adult U.S. population is concerned about the
-lack of educational programs shown on television. To gather data about
-this issue, a national polling service randomly chose and questioned 920
-individuals. If 478 (52%) of those surveyed stated that they are
-concerned about the lack of educational programs on television, does
-this prove the claim of the educator?</p>
-<p>Let <span class="math inline">\(p\)</span> be the true proportion of
-people who are concerned about the lack of educational programs on
-television.</p>
-<ul>
-<li><span class="math inline">\(H_0: p = 0.5\)</span></li>
-<li><span class="math inline">\(H_1: p &gt; 0.5\)</span></li>
-<li>P-value:
-<ul>
-<li><p>Based on the binomial distribution (<span class="math inline">\(n=920\)</span> and <span class="math inline">\(p=0.5\)</span>):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">477</span>, <span class="dv">920</span>, <span class="fl">0.5</span>)</span></code></pre></div>
-<pre><code>## [1] 0.1242603</code></pre></li>
-<li><p>Based on the normal approximation (i.e., the sampling
-distribution of <span class="math inline">\(\hat p\)</span>), in which
-<span class="math inline">\(\scriptsize E[\hat p]=p=0.5\)</span> and
-<span class="math inline">\(\scriptsize SD(\hat
-p)=\sqrt{p(1-p)/n}=\sqrt{0.5(1-0.5)/920}\)</span>, with <a href="https://albums.yuanting.lu/sta126/25fa/10-samplingDistribution.html#Continuous_Correction" target="_blank">continuous correction</a> applied:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">477.5</span> <span class="sc">/</span> <span class="dv">920</span>, <span class="fl">0.5</span>, <span class="fu">sqrt</span>(<span class="fl">0.5</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">920</span>))</span></code></pre></div>
-<pre><code>## [1] 0.1242673</code></pre>
-<p>If true proportion of people who are concerned about the lack of
-educational programs on television was 0.5, the probability of seeing
-478 <strong>or more</strong> concerned people in a sample of 920 is
-about 0.124.</p></li>
-</ul></li>
-<li>Conclusion: Based on a significance level of 0.05, the p-value is
-not small, meaning the data we observed is not rare. Therefore, we do
-not reject the hypothesis that the true proportion of people who are
-concerned about the lack of educational programs on television is
-0.5.</li>
-</ul>
-<p><strong><ex>Example 4 (Ross 9.9)</ex></strong> A computer chip
-manufacturer claims that at most 2% of the chips it produces are
-defective. An electronics company, impressed by that claim, has
-purchased a large quantity of chips. To determine if the manufacturer’s
-claim is plausible, the company has decided to test a sample of 400 of
-these chips. If there are 13 defective chips (3.25 percent) among these
-400, does this disprove (at the 5 percent level of significance) the
-manufacturer’s claim?</p>
-<p><br><br><br><br><br></p>
-<p><br><br><br><br><br></p>
 </div>
 <div id="endnotes" class="section level3 unnumbered">
 <h3 class="unnumbered"></h3>
